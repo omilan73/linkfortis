@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linkfortis · Tarjetas NFC y ReviewShield, el escudo de reseñas de Google</title>
+<meta name="description" content="Tarjetas NFC para conseguir reseñas de Google y contacto por WhatsApp, y ReviewShield: impulsa tus 5 estrellas en Google y ataja las quejas en privado antes de que afecten tu negocio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16303A;
+    --teal:#2E6773;
+    --teal-deep:#122B33;
+    --sage:#7FAE72;
+    --sage-soft:#DCE9D5;
+    --paper:#EDEFEE;
+    --panel:#FFFFFF;
+    --line:#C7CDCB;
+    --muted:#51676B;
+    --radius-s:4px;
+    --star:#E0A33E;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', Arial, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.brand-word{
+    font-family:'Space Grotesk', 'IBM Plex Sans', Arial, sans-serif;
+    font-weight:600;
+    color:var(--ink);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  .section{padding:88px 0;}
+  .section-tight{padding:56px 0;}
+  .rule{border:none;border-top:1px solid var(--line);margin:0;}
+  p{color:var(--muted);max-width:62ch;}
+  .lede{font-size:1.15rem;max-width:52ch;}
+
+  /* -------- header -------- */
+  header{
+    position:sticky;top:0;z-index:40;
+    background:rgba(237,239,238,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 0;
+  }
+  .nav-left{display:flex;align-items:center;gap:12px;}
+  .nav-left img{height:34px;width:auto;}
+  .nav-left span{font-size:1.05rem;font-weight:600;}
+  .nav-links{display:flex;align-items:center;gap:30px;}
+  .nav-links a{
+    font-size:0.94rem;color:var(--ink);text-decoration:none;
+    padding:4px 0;border-bottom:1px solid transparent;
+  }
+  .nav-links a:hover{border-bottom-color:var(--teal);}
+  .nav-cta{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--teal);color:#fff;
+    padding:10px 18px;border-radius:var(--radius-s);
+    font-size:0.92rem;font-weight:500;text-decoration:none;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--teal-deep);}
+  .nav-cta-mobile{display:none;}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px;}
+  .nav-toggle span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;}
+
+  /* -------- hero -------- */
+  .hero{padding:64px 0 0 0;}
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;
+  }
+  .hero h1{font-size:2.7rem;line-height:1.12;max-width:14ch;}
+  .hero .lede{margin-top:22px;}
+  .hero-actions{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+  .btn-primary{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--ink);color:#fff;
+    padding:14px 24px;border-radius:var(--radius-s);
+    font-size:0.96rem;font-weight:500;text-decoration:none;
+  }
+  .btn-primary:hover{background:var(--teal-deep);}
+  .btn-secondary{
+    display:inline-flex;align-items:center;gap:8px;
+    background:transparent;color:var(--ink);
+    padding:14px 24px;border-radius:var(--radius-s);
+    border:1px solid var(--line);
+    font-size:0.96rem;font-weight:500;text-decoration:none;
+  }
+  .btn-secondary:hover{border-color:var(--ink);}
+  .hero-meta{
+    display:flex;gap:28px;margin-top:36px;padding-top:24px;border-top:1px solid var(--line);
+  }
+  .hero-meta div{font-size:0.85rem;color:var(--muted);}
+  .hero-meta strong{display:block;color:var(--ink);font-family:'Space Grotesk';font-size:1.3rem;font-weight:600;}
+  .hero-visual{position:relative;}
+  .hero-visual img{
+    border-radius:var(--radius-s);
+    box-shadow:0 24px 48px -20px rgba(18,43,51,0.35);
+  }
+  .hero-visual .tag{
+    position:absolute;bottom:-18px;left:-18px;
+    background:var(--ink);color:#fff;
+    padding:14px 20px;border-radius:var(--radius-s);
+    font-family:'Space Grotesk';font-size:0.95rem;font-weight:500;
+    box-shadow:0 12px 24px -8px rgba(18,43,51,0.4);
+  }
+  .hero-visual .tag span{display:block;font-size:0.72rem;color:var(--sage-soft);font-weight:400;font-family:'IBM Plex Sans';margin-top:2px;}
+
+  /* -------- nfc explainer strip -------- */
+  .strip{
+    background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .strip .wrap{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;padding-top:32px;padding-bottom:32px;}
+  .strip svg{width:52px;height:52px;flex-shrink:0;}
+  .strip p{margin:0;max-width:70ch;font-size:0.98rem;}
+  .strip strong{color:var(--ink);}
+
+  /* -------- section heads -------- */
+  .head-row{
+    display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
+    margin-bottom:48px;flex-wrap:wrap;
+  }
+  .head-row h2{font-size:1.9rem;max-width:16ch;}
+  .head-row p{margin:0;}
+
+  /* -------- how it works -------- */
+  .steps{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    border-top:1px solid var(--line);
+  }
+  .step{
+    padding:32px 28px 32px 0;border-right:1px solid var(--line);
+  }
+  .step:last-child{border-right:none;}
+  .step .num{
+    font-family:'Space Grotesk';font-size:0.85rem;color:var(--teal);
+    font-weight:600;margin-bottom:14px;display:block;
+  }
+  .step h3{font-size:1.15rem;margin-bottom:10px;}
+  .step p{font-size:0.95rem;margin:0;}
+
+  /* -------- products -------- */
+  .products{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .product{background:var(--panel);padding:40px;display:flex;flex-direction:column;}
+  .product-img{border-radius:var(--radius-s);overflow:hidden;margin-bottom:28px;aspect-ratio:4/3;}
+  .product-img img{width:100%;height:100%;object-fit:cover;}
+  .product h3{font-size:1.3rem;margin-bottom:10px;}
+  .product p.desc{font-size:0.95rem;margin-bottom:22px;}
+  .product .price-row{
+    display:flex;align-items:baseline;justify-content:space-between;
+    margin-top:auto;padding-top:20px;border-top:1px solid var(--line);
+  }
+  .product .price{font-family:'Space Grotesk';font-size:1.6rem;font-weight:600;color:var(--ink);}
+  .product .price span{font-size:0.85rem;color:var(--muted);font-family:'IBM Plex Sans';font-weight:400;}
+  .product .order-link{
+    display:inline-flex;align-items:center;gap:6px;
+    color:var(--teal);text-decoration:none;font-size:0.92rem;font-weight:500;
+    margin-top:18px;border-bottom:1px solid var(--teal);padding-bottom:1px;width:fit-content;
+  }
+  .product .order-link:hover{color:var(--teal-deep);border-color:var(--teal-deep);}
+
+  /* -------- comparison -------- */
+  .compare{background:var(--teal-deep);color:#fff;}
+  .compare h2{color:#fff;font-size:1.9rem;max-width:18ch;margin-bottom:16px;}
+  .compare > .wrap > p{color:#C7D6D3;max-width:60ch;margin-bottom:44px;}
+  .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.14);}
+  .compare-col{padding:32px;}
+  .compare-col h3{color:#fff;font-size:1.05rem;margin-bottom:16px;font-family:'Space Grotesk';}
+  .compare-col.no h3{color:#9FB3B0;}
+  .compare-col ul{list-style:none;margin:0;padding:0;}
+  .compare-col li{
+    padding:10px 0;border-top:1px solid rgba(255,255,255,0.12);
+    font-size:0.92rem;color:#D8E3E1;
+  }
+  .compare-col li:first-of-type{border-top:none;}
+  .compare-col.no li{color:#8FA3A0;}
+
+  /* -------- who it's for -------- */
+  .who-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;}
+  .who-row span{
+    border:1px solid var(--line);border-radius:999px;
+    padding:9px 18px;font-size:0.9rem;color:var(--ink);background:var(--panel);
+  }
+
+  /* -------- order / contact -------- */
+  .order{background:var(--ink);color:#fff;}
+  .order-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}
+  .order h2{color:#fff;font-size:2.1rem;max-width:14ch;}
+  .order > .wrap > .order-grid > div:first-child > p{color:#B7C6C4;margin-top:18px;}
+  .order-panel{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:var(--radius-s);
+    padding:32px;
+  }
+  .order-panel .line{
+    display:flex;justify-content:space-between;padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,0.14);font-size:0.94rem;color:#D8E3E1;
+  }
+  .order-panel .line:last-of-type{border-bottom:none;}
+  .order-panel .line strong{color:#fff;font-weight:500;}
+  .whatsapp-btn{
+    margin-top:26px;display:flex;align-items:center;justify-content:center;gap:10px;
+    background:var(--sage);color:var(--ink);
+    padding:16px 20px;border-radius:var(--radius-s);
+    font-family:'Space Grotesk';font-weight:600;font-size:1rem;text-decoration:none;
+  }
+  .whatsapp-btn:hover{background:#93BF87;}
+  .order-phone{margin-top:16px;text-align:center;font-size:0.88rem;color:#9FB3B0;}
+  .order-phone a{color:#D8E3E1;text-decoration:none;}
+
+  /* -------- footer -------- */
+  footer{border-top:1px solid var(--line);padding:44px 0;}
+  .foot-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .foot-left{display:flex;align-items:center;gap:12px;}
+  .foot-left img{height:26px;}
+  .foot-left span{font-family:'Space Grotesk';font-weight:600;font-size:0.95rem;}
+  footer .tagline{font-size:0.82rem;color:var(--muted);margin-top:4px;}
+  .foot-right{font-size:0.85rem;color:var(--muted);text-align:right;}
+  .foot-right a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);}
+
+  /* -------- responsive -------- */
+  @media (max-width:860px){
+    .nav-links{
+      position:fixed;top:63px;left:0;right:0;
+      background:var(--paper);border-bottom:1px solid var(--line);
+      flex-direction:column;align-items:flex-start;gap:0;
+      padding:8px 28px 18px;
+      transform:translateY(-8px);opacity:0;pointer-events:none;
+      transition:opacity .18s ease, transform .18s ease;
+    }
+    .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto;}
+    .nav-links a{padding:12px 0;width:100%;border-bottom:1px solid var(--line);}
+    .nav-cta{display:none;}
+    .nav-cta-mobile{display:inline-flex;margin-top:10px;}
+    .nav-toggle{display:block;}
+    .hero-grid{grid-template-columns:1fr;gap:44px;}
+    .hero{padding-top:44px;}
+    .hero h1{font-size:2.1rem;max-width:none;}
+    .hero-visual{order:-1;}
+    .hero-visual .tag{left:12px;bottom:-16px;}
+    .hero-meta{flex-wrap:wrap;row-gap:18px;}
+    .section{padding:56px 0;}
+    .steps{grid-template-columns:1fr;}
+    .step{border-right:none;border-bottom:1px solid var(--line);padding:26px 0;}
+    .step:last-child{border-bottom:none;}
+    .products{grid-template-columns:1fr;}
+    .compare-grid{grid-template-columns:1fr;}
+    .order-grid{grid-template-columns:1fr;gap:40px;}
+    .foot-row{flex-direction:column;align-items:flex-start;}
+    .foot-right{text-align:left;}
+  }
+
+  /* ================================================================
+     RESEÑAS DE GOOGLE — bloque añadido
+     ================================================================ */
+  .reviews{
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    padding:80px 0 88px;
+    position:relative;
+  }
+  .rv-top{
+    display:grid;grid-template-columns:340px 1fr;gap:48px;align-items:stretch;
+    margin-bottom:44px;
+  }
+  .rv-score{
+    background:var(--teal-deep);color:#fff;
+    border-radius:var(--radius-s);
+    padding:34px 32px;
+    display:flex;flex-direction:column;justify-content:center;
+    box-shadow:0 24px 48px -26px rgba(18,43,51,0.55);
+  }
+  .rv-score .rv-number{
+    font-family:'Space Grotesk';font-size:4.2rem;line-height:1;font-weight:600;
+    color:#fff;letter-spacing:-0.03em;
+  }
+  .rv-score .rv-number small{font-size:1.1rem;color:#8FA9A6;font-weight:400;margin-left:6px;}
+  .rv-score .rv-stars{margin:16px 0 12px;}
+  .rv-score .rv-count{font-size:0.88rem;color:#B7C6C4;margin:0;max-width:none;}
+  .rv-score .rv-google{
+    display:flex;align-items:center;gap:8px;
+    margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.16);
+    font-size:0.82rem;color:#9FB3B0;
+  }
+  .rv-score .rv-google svg{width:16px;height:16px;flex-shrink:0;}
+  .rv-score .rv-cta{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    margin-top:20px;background:var(--sage);color:var(--ink);
+    padding:13px 18px;border-radius:var(--radius-s);
+    font-family:'Space Grotesk';font-weight:600;font-size:0.94rem;text-decoration:none;
+  }
+  .rv-score .rv-cta:hover{background:#93BF87;}
+
+  .rv-intro{display:flex;flex-direction:column;justify-content:center;}
+  .rv-intro h2{font-size:2.15rem;line-height:1.15;max-width:17ch;}
+  .rv-intro p{margin-top:16px;font-size:1.02rem;}
+  .rv-intro .rv-live{
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:0.8rem;color:var(--teal);margin-bottom:14px;
+  }
+  .rv-intro .rv-live i{
+    width:7px;height:7px;border-radius:50%;background:var(--sage);
+    display:inline-block;flex-shrink:0;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .rv-intro .rv-live i{animation:rvPulse 2.4s ease-in-out infinite;}
+  }
+  @keyframes rvPulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(127,174,114,0.55);}
+    60%{box-shadow:0 0 0 7px rgba(127,174,114,0);}
+  }
+
+  /* estrellas */
+  .rv-stars{display:inline-flex;gap:3px;align-items:center;}
+  .rv-stars svg{width:18px;height:18px;flex-shrink:0;}
+  .rv-stars .s-on{fill:var(--star);}
+  .rv-stars .s-off{fill:none;stroke:var(--star);stroke-width:1.6;}
+
+  /* carrusel */
+  .rv-carousel{position:relative;}
+  .rv-track{
+    display:flex;gap:20px;
+    overflow-x:auto;scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
+    padding:4px 2px 22px;
+    scrollbar-width:thin;scrollbar-color:var(--line) transparent;
+  }
+  .rv-track::-webkit-scrollbar{height:6px;}
+  .rv-track::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px;}
+  .rv-card{
+    flex:0 0 clamp(272px, 31.2%, 372px);
+    scroll-snap-align:start;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius-s);
+    padding:26px 24px;
+    display:flex;flex-direction:column;
+  }
+  .rv-card .rv-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+  .rv-card .rv-avatar{
+    width:42px;height:42px;border-radius:50%;flex-shrink:0;object-fit:cover;
+    background:var(--sage-soft);
+  }
+  .rv-card .rv-avatar-fb{
+    width:42px;height:42px;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--sage-soft);color:var(--teal-deep);
+    font-family:'Space Grotesk';font-weight:600;font-size:1rem;
+  }
+  .rv-card .rv-who{min-width:0;}
+  .rv-card .rv-name{
+    font-family:'Space Grotesk';font-weight:600;font-size:0.96rem;color:var(--ink);
+    text-decoration:none;display:block;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .rv-card a.rv-name:hover{color:var(--teal);}
+  .rv-card .rv-when{font-size:0.78rem;color:var(--muted);}
+  .rv-card .rv-stars{margin-bottom:12px;}
+  .rv-card .rv-stars svg{width:16px;height:16px;}
+  .rv-card .rv-text{
+    font-size:0.94rem;color:var(--muted);margin:0;max-width:none;
+    display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .rv-card .rv-text.open{-webkit-line-clamp:unset;}
+  .rv-card .rv-more{
+    background:none;border:none;padding:0;margin-top:10px;cursor:pointer;
+    color:var(--teal);font-size:0.86rem;font-family:'IBM Plex Sans';
+    border-bottom:1px solid var(--teal);width:fit-content;
+  }
+  .rv-card .rv-src{
+    margin-top:auto;padding-top:18px;
+    display:flex;align-items:center;gap:7px;
+    font-size:0.76rem;color:var(--muted);
+  }
+  .rv-card .rv-src svg{width:14px;height:14px;flex-shrink:0;}
+
+  .rv-nav{display:flex;align-items:center;gap:10px;margin-top:6px;}
+  .rv-nav[hidden]{display:none;}
+  .rv-nav button{
+    width:42px;height:42px;border:1px solid var(--line);background:var(--panel);
+    border-radius:var(--radius-s);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;color:var(--ink);
+  }
+  .rv-nav button:hover:not(:disabled){border-color:var(--ink);}
+  .rv-nav button:disabled{opacity:0.32;cursor:default;}
+  .rv-nav svg{width:16px;height:16px;}
+  .rv-nav .rv-progress{
+    flex:1;height:2px;background:var(--line);position:relative;margin:0 6px;
+  }
+  .rv-nav .rv-progress i{
+    position:absolute;left:0;top:0;bottom:0;background:var(--teal);
+    width:30%;transition:left .2s ease,width .2s ease;
+  }
+  .rv-nav .rv-all{
+    font-size:0.88rem;color:var(--teal);text-decoration:none;
+    border-bottom:1px solid var(--teal);padding-bottom:1px;white-space:nowrap;
+  }
+
+  /* estados */
+  .rv-skeleton{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-s);
+    flex:0 0 clamp(272px, 31.2%, 372px);padding:26px 24px;min-height:210px;
+  }
+  .rv-skeleton .bar{height:11px;background:var(--line);border-radius:99px;opacity:0.55;margin-bottom:11px;}
+  .rv-skeleton .bar.w40{width:40%;}
+  .rv-skeleton .bar.w90{width:90%;}
+  .rv-skeleton .bar.w70{width:70%;}
+  .rv-empty{
+    border:1px dashed var(--line);border-radius:var(--radius-s);
+    padding:34px 28px;background:var(--panel);
+  }
+  .rv-empty h3{font-size:1.1rem;margin-bottom:8px;}
+  .rv-empty p{margin:0 0 18px;font-size:0.95rem;}
+
+  /* insignia flotante */
+  .rv-badge{
+    position:fixed;right:20px;bottom:20px;z-index:60;
+    display:none;
+    background:var(--panel);border:1px solid var(--line);
+    border-radius:var(--radius-s);
+    box-shadow:0 18px 34px -18px rgba(18,43,51,0.45);
+    max-width:min(300px,calc(100vw - 40px));
+  }
+  .rv-badge.show{display:block;}
+  .rv-badge:hover{border-color:var(--teal);}
+  .rv-badge-link{
+    display:flex;align-items:center;gap:12px;
+    padding:11px 15px 11px 13px;
+    text-decoration:none;color:var(--ink);
+  }
+  .rv-badge .rv-badge-num{
+    font-family:'Space Grotesk';font-weight:600;font-size:1.32rem;line-height:1;
+  }
+  .rv-badge .rv-badge-txt{font-size:0.74rem;color:var(--muted);line-height:1.35;display:block;}
+  .rv-badge .rv-stars svg{width:13px;height:13px;}
+  .rv-badge-close{
+    position:absolute;top:-9px;right:-9px;
+    width:22px;height:22px;border-radius:50%;
+    background:var(--ink);color:#fff;border:none;cursor:pointer;
+    font-size:13px;line-height:1;display:flex;align-items:center;justify-content:center;
+  }
+
+  /* contacto por correo en el panel de pedido */
+  .order-mail{margin-top:10px;text-align:center;font-size:0.88rem;color:#9FB3B0;}
+  .order-mail a{color:#D8E3E1;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.25);}
+
+  @media (max-width:980px){
+    .rv-top{grid-template-columns:1fr;gap:28px;}
+    .rv-score{padding:28px 26px;}
+    .rv-score .rv-number{font-size:3.4rem;}
+    .rv-intro h2{font-size:1.8rem;max-width:none;}
+  }
+  @media (max-width:860px){
+    .reviews{padding:56px 0 64px;}
+    .rv-card,.rv-skeleton{flex:0 0 min(86%,340px);}
+    .rv-nav .rv-all{display:none;}
+    .rv-badge.show{display:none;}  /* en movil tapa contenido: se oculta */
+  }
+
+  /* ================================================================
+     REVIEWSHIELD — servicio añadido
+     ================================================================ */
+  .rs{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:88px 0;}
+  .rs-top{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .rs-brand{display:flex;align-items:center;gap:16px;margin-bottom:26px;}
+  .rs-brand img{height:64px;width:auto;border-radius:var(--radius-s);border:1px solid var(--line);background:#fff;}
+  .rs-eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--sage-soft);color:var(--teal-deep);
+    font-family:'Space Grotesk';font-weight:600;font-size:0.78rem;letter-spacing:0.04em;text-transform:uppercase;
+    padding:6px 12px;border-radius:999px;
+  }
+  .rs-eyebrow svg{width:14px;height:14px;}
+  .rs h2{font-size:2.3rem;line-height:1.12;max-width:16ch;}
+  .rs h2 em{font-style:normal;color:var(--teal);}
+  .rs .rs-slogan{margin-top:20px;font-size:1.15rem;max-width:44ch;color:var(--ink);}
+  .rs-actions{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;}
+
+  .rs-flow{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-s);
+    padding:28px;
+  }
+  .rs-flow-start{
+    display:flex;align-items:center;gap:12px;
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-s);
+    padding:14px 16px;font-family:'Space Grotesk';font-weight:600;font-size:0.95rem;color:var(--ink);
+  }
+  .rs-flow-start svg{width:22px;height:22px;flex-shrink:0;color:var(--teal);}
+  .rs-flow-start span{display:block;font-family:'IBM Plex Sans';font-weight:400;font-size:0.82rem;color:var(--muted);}
+  .rs-fork{
+    height:26px;margin:0 auto;width:60%;position:relative;
+    border-left:2px solid var(--line);border-right:2px solid var(--line);
+    border-bottom:2px solid var(--line);border-radius:0 0 8px 8px;margin-top:0;
+  }
+  .rs-fork::before{content:"";position:absolute;left:50%;top:-14px;height:14px;border-left:2px solid var(--line);}
+  .rs-branches{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:0;}
+  .rs-branch{border-radius:var(--radius-s);padding:20px 18px;position:relative;}
+  .rs-branch.happy{background:var(--sage-soft);border:1px solid #B9D3AE;}
+  .rs-branch.unhappy{background:var(--teal-deep);color:#fff;border:1px solid var(--teal-deep);}
+  .rs-branch .rs-tag{
+    font-family:'Space Grotesk';font-size:0.72rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;
+    display:block;margin-bottom:10px;
+  }
+  .rs-branch.happy .rs-tag{color:var(--teal);}
+  .rs-branch.unhappy .rs-tag{color:var(--sage);}
+  .rs-branch h3{font-size:1.02rem;line-height:1.3;margin-bottom:8px;}
+  .rs-branch.unhappy h3{color:#fff;}
+  .rs-branch p{margin:0;font-size:0.86rem;}
+  .rs-branch.happy p{color:#3F5A4A;}
+  .rs-branch.unhappy p{color:#B7C6C4;}
+  .rs-branch .rs-stars{display:inline-flex;gap:2px;margin-bottom:10px;}
+  .rs-branch .rs-stars svg{width:15px;height:15px;fill:var(--star);}
+  .rs-branch .rs-lock{width:20px;height:20px;color:var(--sage);margin-bottom:10px;display:block;}
+  .rs-flow-note{margin:18px 0 0;font-size:0.82rem;max-width:none;text-align:center;}
+
+  .rs-pillars{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    border-top:1px solid var(--line);margin-top:64px;
+  }
+  .rs-pillar{padding:32px 28px 8px 0;border-right:1px solid var(--line);margin-right:28px;}
+  .rs-pillar:last-child{border-right:none;margin-right:0;}
+  .rs-pillar .rs-ico{
+    width:42px;height:42px;border-radius:var(--radius-s);
+    background:var(--sage-soft);color:var(--teal-deep);
+    display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+  }
+  .rs-pillar .rs-ico svg{width:22px;height:22px;}
+  .rs-pillar h3{font-size:1.15rem;margin-bottom:10px;}
+  .rs-pillar p{font-size:0.95rem;margin:0;}
+
+  .rs-demo{
+    margin-top:48px;background:var(--teal-deep);color:#fff;border-radius:var(--radius-s);
+    padding:32px 36px;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;
+  }
+  .rs-demo h3{color:#fff;font-size:1.3rem;margin-bottom:6px;}
+  .rs-demo p{margin:0;color:#B7C6C4;font-size:0.95rem;max-width:56ch;}
+  .rs-demo-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .rs-demo .btn-demo{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--sage);color:var(--ink);
+    padding:14px 22px;border-radius:var(--radius-s);
+    font-family:'Space Grotesk';font-weight:600;font-size:0.96rem;text-decoration:none;
+  }
+  .rs-demo .btn-demo:hover{background:#93BF87;}
+  .rs-demo .btn-ghost{
+    display:inline-flex;align-items:center;gap:8px;
+    background:transparent;color:#fff;
+    padding:14px 22px;border-radius:var(--radius-s);
+    border:1px solid rgba(255,255,255,0.3);
+    font-size:0.96rem;font-weight:500;text-decoration:none;
+  }
+  .rs-demo .btn-ghost:hover{border-color:#fff;}
+
+  /* aviso de novedad en el hero */
+  .hero-new{
+    display:inline-flex;align-items:center;gap:10px;margin-bottom:22px;
+    background:var(--panel);border:1px solid var(--line);border-radius:999px;
+    padding:6px 14px 6px 6px;font-size:0.85rem;color:var(--ink);text-decoration:none;
+  }
+  .hero-new b{
+    background:var(--teal);color:#fff;font-family:'Space Grotesk';font-weight:600;
+    font-size:0.68rem;letter-spacing:0.05em;text-transform:uppercase;
+    padding:4px 10px;border-radius:999px;
+  }
+  .hero-new:hover{border-color:var(--teal);}
+
+  @media (max-width:980px){
+    .rs h2{font-size:2rem;max-width:none;}
+  }
+  @media (max-width:860px){
+    .rs{padding:56px 0;}
+    .rs-top{grid-template-columns:1fr;gap:40px;}
+    .rs-pillars{grid-template-columns:1fr;margin-top:44px;}
+    .rs-pillar{border-right:none;margin-right:0;padding:26px 0;border-bottom:1px solid var(--line);}
+    .rs-pillar:last-child{border-bottom:none;}
+    .rs-branches{grid-template-columns:1fr;}
+    .rs-fork{display:none;}
+    .rs-branches{margin-top:14px;}
+    .rs-demo{padding:26px 22px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="nav-left">
+      <img src="/img/logo_linkfortis.jpeg" alt="Linkfortis">
+      <span class="brand-word">Linkfortis</span>
+    </div>
+    <button class="nav-toggle" aria-label="Abrir menú" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-links">
+      <a href="#resenas">Reseñas</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#producto">Producto</a>
+      <a href="#reviewshield">ReviewShield</a>
+      <a href="#por-que-nfc">Por qué NFC</a>
+      <a href="#pedido">Contacto</a>
+      <a class="nav-cta nav-cta-mobile" href="https://wa.me/34643380339?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20tarjetas%20NFC%20de%20Linkfortis" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+    </nav>
+    <a class="nav-cta" href="https://wa.me/34643380339?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20tarjetas%20NFC%20de%20Linkfortis" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <a class="hero-new" href="#reviewshield"><b>Nuevo</b>ReviewShield: el escudo de tu nota en Google →</a>
+      <h1>Que cada mostrador consiga tu próxima reseña de Google</h1>
+      <p class="lede">Tarjetas con tecnología NFC para tu negocio: el cliente acerca el móvil y se abre directamente tu ficha de Google o un WhatsApp ya redactado. Sin cámara, sin códigos QR, sin instalar nada.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://wa.me/34643380339?text=Hola%2C%20quiero%20pedir%20una%20tarjeta%20NFC%20de%20Linkfortis" target="_blank" rel="noopener">Pedir mi tarjeta — 19€</a>
+        <a class="btn-secondary" href="#como-funciona">Ver cómo funciona</a>
+      </div>
+      <div class="hero-meta">
+        <div><strong>19€</strong>pago único, sin cuotas</div>
+        <div><strong>&lt;1s</strong>en activarse al acercar el móvil</div>
+        <div><strong>NFC</strong>sin cámara ni códigos QR</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="/img/tj_review_far.jpeg" alt="Tarjeta NFC de reseñas de Google en el mostrador de un comercio">
+      <div class="tag">Acerca el móvil<span>y listo — sin apps</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 26c0-6.6 5.4-12 12-12s12 5.4 12 12" stroke="#7FAE72" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M19 26c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="#2E6773" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="26" cy="26" r="2.6" fill="#16303A"/>
+    </svg>
+    <p><strong>¿Qué es NFC?</strong> Es la misma tecnología que usas para pagar con el móvil en el datáfono. Casi todos los smartphones fabricados en la última década la llevan integrada: no hace falta abrir la cámara, enfocar ni instalar ninguna aplicación.</p>
+  </div>
+</div>
+
+<!-- ================================================================
+     RESEÑAS DE GOOGLE — sección añadida
+     ================================================================ -->
+<section class="reviews" id="resenas">
+  <div class="wrap">
+
+    <div class="rv-top">
+      <div class="rv-score">
+        <div class="rv-number" id="rv-rating">—<small>/ 5</small></div>
+        <div class="rv-stars" id="rv-rating-stars"></div>
+        <p class="rv-count" id="rv-count">Cargando valoraciones…</p>
+        <a class="rv-cta" id="rv-write" href="#" target="_blank" rel="noopener">Escribir una reseña</a>
+        <div class="rv-google">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#4285F4" d="M23 12.27c0-.82-.07-1.6-.21-2.36H12v4.47h6.16a5.27 5.27 0 0 1-2.29 3.46v2.88h3.7C21.72 18.7 23 15.76 23 12.27z"/>
+            <path fill="#34A853" d="M12 23.5c3.1 0 5.7-1.03 7.6-2.78l-3.71-2.88c-1.03.69-2.35 1.1-3.89 1.1-2.99 0-5.52-2.02-6.43-4.73H1.73v2.97A11.49 11.49 0 0 0 12 23.5z"/>
+            <path fill="#FBBC05" d="M5.57 14.21a6.9 6.9 0 0 1 0-4.42V6.82H1.73a11.5 11.5 0 0 0 0 10.36l3.84-2.97z"/>
+            <path fill="#EA4335" d="M12 5.06c1.69 0 3.2.58 4.4 1.72l3.29-3.29C17.7 1.63 15.1.5 12 .5 7.53.5 3.67 3.07 1.73 6.82l3.84 2.97C6.48 7.08 9.01 5.06 12 5.06z"/>
+          </svg>
+          <span>Datos obtenidos de Google</span>
+        </div>
+      </div>
+
+      <div class="rv-intro">
+        <span class="rv-live"><i></i>Sincronizado con nuestro perfil de Google</span>
+        <h2>Lo que dicen los negocios que ya tienen su tarjeta</h2>
+        <p>Estas opiniones se leen directamente de nuestra ficha de Google y se actualizan solas, sin que nadie las escriba a mano. Es exactamente lo que tu tarjeta hará por tu negocio: convertir clientes contentos en reseñas visibles.</p>
+      </div>
+    </div>
+
+    <div class="rv-carousel">
+      <div class="rv-track" id="rv-track" tabindex="0" aria-label="Reseñas de clientes">
+        <div class="rv-skeleton"><div class="bar w40"></div><div class="bar w90"></div><div class="bar w90"></div><div class="bar w70"></div></div>
+        <div class="rv-skeleton"><div class="bar w40"></div><div class="bar w90"></div><div class="bar w70"></div><div class="bar w90"></div></div>
+        <div class="rv-skeleton"><div class="bar w40"></div><div class="bar w70"></div><div class="bar w90"></div><div class="bar w90"></div></div>
+      </div>
+      <div class="rv-nav" id="rv-nav" hidden>
+        <button type="button" id="rv-prev" aria-label="Reseña anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button type="button" id="rv-next" aria-label="Reseña siguiente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <div class="rv-progress"><i id="rv-progress-bar"></i></div>
+        <a class="rv-all" id="rv-all" href="#" target="_blank" rel="noopener">Ver todas en Google</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="rv-badge" id="rv-badge">
+  <a class="rv-badge-link" id="rv-badge-link" href="#" target="_blank" rel="noopener">
+    <span class="rv-badge-num" id="rv-badge-num">—</span>
+    <span>
+      <span class="rv-stars" id="rv-badge-stars"></span>
+      <span class="rv-badge-txt" id="rv-badge-txt">Reseñas en Google</span>
+    </span>
+  </a>
+  <button class="rv-badge-close" type="button" id="rv-badge-close" aria-label="Ocultar insignia de reseñas">×</button>
+</div>
+
+<section class="section" id="como-funciona">
+  <div class="wrap">
+    <div class="head-row">
+      <h2>Tres pasos, sin fricción</h2>
+      <p>Desde que el cliente acerca el móvil hasta que deja la reseña o abre el chat, pasa menos de un segundo.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="num">01</span>
+        <h3>Coloca la tarjeta</h3>
+        <p>En el mostrador, la mesa o la recepción — en el punto donde te despides del cliente.</p>
+      </div>
+      <div class="step">
+        <span class="num">02</span>
+        <h3>El cliente acerca el móvil</h3>
+        <p>Cualquier smartphone actual, iOS o Android, detecta la tarjeta sin necesidad de abrir ninguna app.</p>
+      </div>
+      <div class="step">
+        <span class="num">03</span>
+        <h3>Se abre automáticamente</h3>
+        <p>Tu ficha de Google lista para recibir la reseña, o un WhatsApp ya redactado con tu número.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight" id="producto" style="padding-top:0;">
+  <div class="wrap">
+    <div class="head-row">
+      <h2>Dos tarjetas, un mismo toque</h2>
+      <p>Elige la que necesites o pide las dos: una para reseñas, otra para que te escriban por WhatsApp.</p>
+    </div>
+    <div class="products">
+      <div class="product">
+        <div class="product-img">
+          <img src="/img/tj_review_near.jpeg" alt="Tarjeta NFC de reseñas de Google">
+        </div>
+        <h3>Tarjeta de reseñas Google</h3>
+        <p class="desc">Acerca el móvil y se abre directamente el formulario para dejar una reseña en tu ficha de Google, con el teclado ya listo para escribir. Ideal para el mostrador o la mesa, justo antes de despedirte del cliente.</p>
+        <div class="price-row">
+          <div class="price">19€ <span>pago único</span></div>
+        </div>
+        <a class="order-link" href="https://wa.me/34643380339?text=Hola%2C%20quiero%20pedir%20la%20tarjeta%20de%20rese%C3%B1as%20de%20Google%20de%20Linkfortis" target="_blank" rel="noopener">Pedir esta tarjeta →</a>
+      </div>
+      <div class="product">
+        <div class="product-img">
+          <img src="/img/tj_whatsapp.jpeg" alt="Tarjeta NFC de contacto por WhatsApp en salón de belleza">
+        </div>
+        <h3>Tarjeta de contacto WhatsApp</h3>
+        <p class="desc">El cliente acerca el móvil y se abre un chat de WhatsApp contigo, sin tener que guardar tu número ni escribirlo a mano. Perfecta para citas, pedidos o consultas rápidas.</p>
+        <div class="price-row">
+          <div class="price">19€ <span>pago único</span></div>
+        </div>
+        <a class="order-link" href="https://wa.me/34643380339?text=Hola%2C%20quiero%20pedir%20la%20tarjeta%20de%20contacto%20WhatsApp%20de%20Linkfortis" target="_blank" rel="noopener">Pedir esta tarjeta →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     REVIEWSHIELD — sección añadida
+     ================================================================ -->
+<section class="rs" id="reviewshield">
+  <div class="wrap">
+
+    <div class="rs-top">
+      <div>
+        <div class="rs-brand">
+          <img src="/img/logo_reviewshield.jpeg" alt="Logotipo de ReviewShield" width="64" height="64">
+          <span class="rs-eyebrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3z"/></svg>
+            Nuevo servicio
+          </span>
+        </div>
+        <h2>ReviewShield, el <em>escudo de reseñas</em></h2>
+        <p class="rs-slogan">Impulsa tus 5 estrellas en Google y ataja las quejas en privado antes de que afecten tu negocio.</p>
+        <div class="rs-actions">
+          <a class="btn-primary" href="https://linkfortis.com/encuesta/linkfortis.html" target="_blank" rel="noopener">Probar ReviewShield</a>
+          <a class="btn-secondary" href="https://wa.me/34643380339?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20ReviewShield%20de%20Linkfortis" target="_blank" rel="noopener">Quiero ReviewShield</a>
+        </div>
+      </div>
+
+      <div class="rs-flow" aria-label="Cómo funciona la bifurcación de ReviewShield">
+        <div class="rs-flow-start">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+          <div>El cliente valora su experiencia<span>Siempre es bueno tener otra opción</span></div>
+        </div>
+        <div class="rs-fork"></div>
+        <div class="rs-branches">
+          <div class="rs-branch happy">
+            <span class="rs-tag">Cliente feliz</span>
+            <div class="rs-stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.4l2.9 5.9 6.5.95-4.7 4.58 1.11 6.47L12 17.25 6.19 20.3l1.11-6.47L2.6 9.25l6.5-.95L12 2.4z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.4l2.9 5.9 6.5.95-4.7 4.58 1.11 6.47L12 17.25 6.19 20.3l1.11-6.47L2.6 9.25l6.5-.95L12 2.4z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.4l2.9 5.9 6.5.95-4.7 4.58 1.11 6.47L12 17.25 6.19 20.3l1.11-6.47L2.6 9.25l6.5-.95L12 2.4z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.4l2.9 5.9 6.5.95-4.7 4.58 1.11 6.47L12 17.25 6.19 20.3l1.11-6.47L2.6 9.25l6.5-.95L12 2.4z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.4l2.9 5.9 6.5.95-4.7 4.58 1.11 6.47L12 17.25 6.19 20.3l1.11-6.47L2.6 9.25l6.5-.95L12 2.4z"/></svg></div>
+            <h3>Directo a Google con 1 solo clic</h3>
+            <p>Automatización de reseñas positivas: sin pasos de más, sin fricción.</p>
+          </div>
+          <div class="rs-branch unhappy">
+            <span class="rs-tag">Cliente insatisfecho</span>
+            <svg class="rs-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            <h3>Con la opción a un canal privado</h3>
+            <p>Llega al gerente o al buzón del negocio, no a tu ficha pública.</p>
+          </div>
+        </div>
+        <p class="rs-flow-note">Así atajamos entre un 70 y un 80% de clientes insatisfechos.</p>
+      </div>
+    </div>
+
+    <div class="rs-pillars">
+      <div class="rs-pillar">
+        <div class="rs-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2.2"/><circle cx="18" cy="5" r="2.2"/><circle cx="12" cy="20" r="2.2"/><path d="M6 7.2c0 5 6 5 6 10.6M18 7.2c0 5-6 5-6 10.6"/></svg>
+        </div>
+        <h3>La bifurcación estratégica perfecta</h3>
+        <p>El cliente feliz va directo a Google con un solo clic. La automatización de reseñas positivas trabaja por ti cada día, justo cuando la experiencia está fresca.</p>
+      </div>
+      <div class="rs-pillar">
+        <div class="rs-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="1.5"/><path d="M7 11V8M12 11V5M17 11V8"/></svg>
+        </div>
+        <h3>El muro de contención</h3>
+        <p>El cliente insatisfecho puede optar por un canal privado (gerente o buzón). Una crisis pública se transforma en una oportunidad de fidelización inmediata.</p>
+      </div>
+      <div class="rs-pillar">
+        <div class="rs-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+        </div>
+        <h3>Protección de marca</h3>
+        <p>Manejar la queja internamente y a tiempo desactiva el impulso psicológico de venganza y frustración antes de que el cliente decida plasmarlo en una reseña pública</p>
+      </div>
+    </div>
+
+    <div class="rs-demo">
+      <div>
+        <h3>Compruébalo tú mismo</h3>
+        <p>Abre el demo real de Linkfortis y vive la experiencia como la viviría tu cliente, desde su móvil.</p>
+      </div>
+      <div class="rs-demo-actions">
+        <a class="btn-demo" href="https://linkfortis.com/encuesta/linkfortis.html" target="_blank" rel="noopener">Probar ReviewShield →</a>
+        <a class="btn-ghost" href="https://wa.me/34643380339?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20ReviewShield%20de%20Linkfortis" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="compare" id="por-que-nfc">
+  <div class="wrap section">
+    <h2>Por qué NFC y no un código QR</h2>
+    <p>Nuestras tarjetas funcionan solo con NFC — de forma intencionada. Es una experiencia más directa para el cliente y más cuidada para tu marca.</p>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <h3>Con NFC</h3>
+        <ul>
+          <li>Basta con acercar el móvil, sin apuntar ni enfocar</li>
+          <li>No depende de que la cámara enfoque bien o haya buena luz</li>
+          <li>Funciona incluso a través de una funda fina</li>
+          <li>El diseño de la tarjeta queda limpio, sin un cuadrado de píxeles</li>
+        </ul>
+      </div>
+      <div class="compare-col no">
+        <h3>Con QR</h3>
+        <ul>
+          <li>Hay que abrir la cámara y encuadrar el código</li>
+          <li>Reflejos, poca luz o distancia pueden dificultar la lectura</li>
+          <li>El patrón del código ocupa espacio visual en el diseño</li>
+          <li>Puede fotografiarse y reutilizarse fuera de tu mostrador</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="head-row">
+      <h2>Para qué tipo de negocio</h2>
+      <p>Cualquier negocio con atención cara a cara y un punto claro de despedida del cliente.</p>
+    </div>
+    <div class="who-row">
+      <span>Peluquerías y salones de belleza</span>
+      <span>Restaurantes y cafeterías</span>
+      <span>Clínicas y consultas</span>
+      <span>Tiendas y comercios</span>
+      <span>Talleres y servicios técnicos</span>
+      <span>Profesionales y autónomos</span>
+    </div>
+  </div>
+</section>
+
+<section class="order" id="pedido">
+  <div class="wrap section">
+    <div class="order-grid">
+      <div>
+        <h2>Pide tu tarjeta o consulta ReviewShield</h2>
+        <p>Cuéntanos si quieres la tarjeta de reseñas de Google, la de contacto WhatsApp, ambas, o si te interesa ReviewShield para proteger tu nota media, y te respondemos directamente por chat.</p>
+      </div>
+      <div class="order-panel">
+        <div class="line"><span>Tarjeta de reseñas Google</span><strong>19€</strong></div>
+        <div class="line"><span>Tarjeta de contacto WhatsApp</span><strong>19€</strong></div>
+        <div class="line"><span>ReviewShield · Escudo de reseñas</span><strong>Consultar</strong></div>
+        <div class="line"><span>Tecnología</span><strong>NFC</strong></div>
+        <a class="whatsapp-btn" href="https://wa.me/34643380339?text=Hola%2C%20quiero%20pedir%20una%20tarjeta%20NFC%20de%20Linkfortis" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        <div class="order-phone">También puedes llamar al <a href="tel:+34643380339">643 380 339</a></div>
+        <div class="order-mail">O escribirnos a <a href="mailto:hola@linkfortis.com">hola@linkfortis.com</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <div>
+      <div class="foot-left">
+        <img src="/img/logo_linkfortis.jpeg" alt="Linkfortis">
+        <span>Linkfortis</span>
+      </div>
+      <div class="tagline">Soluciones tecnológicas B2B</div>
+    </div>
+    <div class="foot-right">
+      <div><a href="mailto:hola@linkfortis.com">hola@linkfortis.com</a></div>
+      <div style="margin-top:6px;"><a href="tel:+34643380339">643 380 339</a></div>
+      <div style="margin-top:6px;">© 2026 Linkfortis</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ================================================================
+     RESEÑAS DE GOOGLE — motor de sincronización
+     Configura todo en LF_REVIEWS. No hace falta tocar nada más.
+     ================================================================ -->
+<script>
+(function () {
+  "use strict";
+
+  /* ---------------- CONFIGURACIÓN ---------------- */
+  var LF_REVIEWS = {
+
+    // Ficha de Google del negocio (Place ID).
+    placeId: "ChIJ7RkA49yxFiYRfknrjHdrgl8",
+
+    // Enlace del boton "Escribir una resena".
+    writeReviewUrl: "https://www.google.com/search?hl=es-419&gl=es&q=linkfortis&ludocid=6882181341785049470&lsig=AB86z5XzyXSkO6jL0miPtljUmqJt#lrd=0x2616b1dce30019ed:0x5f826b778ceb497e,3",
+
+    // Enlace de "Ver todas en Google" y de la insignia flotante.
+    allReviewsUrl: "https://www.google.com/search?hl=es-419&gl=es&q=linkfortis&ludocid=6882181341785049470&lsig=AB86z5XzyXSkO6jL0miPtljUmqJt#lrd=0x2616b1dce30019ed:0x5f826b778ceb497e,1",
+
+    // Mensajes de diagnostico en la consola del navegador.
+    // Ponlo en false cuando la web ya este publicada y funcionando.
+    debug: true,
+
+    // OPCIÓN A (recomendada): URL del proxy con caché (Google Apps Script
+    // o Cloudflare Worker). Si la rellenas, la clave NO viaja al navegador
+    // y el consumo de la API baja a unas pocas llamadas al día.
+    proxyUrl: "",
+
+    // OPCIÓN B (sin backend): clave de Google Maps Platform.
+    // Solo se usa si proxyUrl está vacío. Restríngela por dominio.
+    apiKey: "AIzaSyDlJfL_xRtyjJjzJB_YBFPgOKEdZOI2vBc",
+
+    // Horas que se guardan las reseñas en el navegador antes de volver a pedirlas.
+    // Google no permite cachear datos de Places más de 30 días.
+    cacheHours: 12,
+
+    // Solo se muestran reseñas con esta puntuación o superior.
+    minRating: 4,
+
+    // Mostrar la insignia flotante en la esquina inferior izquierda.
+    floatingBadge: true,
+
+    // Idioma en el que se piden las reseñas.
+    language: "es",
+
+    // Opiniones propias que se añaden DESPUÉS de las de Google.
+    // Google solo devuelve un máximo de 5 reseñas por ficha.
+    // Déjalo vacío o añade objetos como el del ejemplo comentado.
+    extraReviews: [
+      // { name:"Nombre del cliente", rating:5, when:"Marzo de 2026",
+      //   text:"Texto textual de la opinión.", source:"Cliente de Linkfortis" }
+    ]
+  };
+  /* -------------- FIN DE LA CONFIGURACIÓN -------------- */
+
+
+  var CACHE_KEY = "lf_google_reviews_v1";
+  var PID = LF_REVIEWS.placeId;
+  var URL_WRITE = LF_REVIEWS.writeReviewUrl ||
+    ("https://search.google.com/local/writereview?placeid=" + encodeURIComponent(PID));
+  var URL_ALL = LF_REVIEWS.allReviewsUrl ||
+    ("https://search.google.com/local/reviews?placeid=" + encodeURIComponent(PID));
+
+  var $ = function (id) { return document.getElementById(id); };
+  var track = $("rv-track");
+  if (!track) return;
+
+  // Los enlaces a Google se asignan de inmediato, sin depender de que la API
+  // responda. Así el botón funciona aunque las reseñas no lleguen a cargar.
+  function wireLinks() {
+    var w = $("rv-write");
+    if (w) { w.href = URL_WRITE; w.target = "_blank"; w.rel = "noopener"; }
+    var a = $("rv-all");
+    if (a) { a.href = URL_ALL; a.target = "_blank"; a.rel = "noopener"; }
+    var b = $("rv-badge-link");
+    if (b) { b.href = URL_ALL; b.target = "_blank"; b.rel = "noopener"; }
+  }
+
+  /* ---------------- utilidades ---------------- */
+
+  function starsSVG(rating, container) {
+    container.textContent = "";
+    var full = Math.round(rating);
+    for (var i = 1; i <= 5; i++) {
+      var s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      s.setAttribute("viewBox", "0 0 24 24");
+      s.setAttribute("aria-hidden", "true");
+      var p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      p.setAttribute("d", "M12 2.4l2.9 5.9 6.5.95-4.7 4.58 1.11 6.47L12 17.25 6.19 20.3l1.11-6.47L2.6 9.25l6.5-.95L12 2.4z");
+      p.setAttribute("class", i <= full ? "s-on" : "s-off");
+      p.setAttribute("stroke-linejoin", "round");
+      s.appendChild(p);
+      container.appendChild(s);
+    }
+    container.setAttribute("role", "img");
+    container.setAttribute("aria-label", rating.toFixed(1) + " de 5 estrellas");
+  }
+
+  function readCache() {
+    try {
+      var raw = localStorage.getItem(CACHE_KEY);
+      if (!raw) return null;
+      var obj = JSON.parse(raw);
+      if (obj.pid !== PID) return null;
+      if (Date.now() - obj.t > LF_REVIEWS.cacheHours * 3600000) return null;
+      return obj.data;
+    } catch (e) { return null; }
+  }
+
+  function writeCache(data) {
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify({ pid: PID, t: Date.now(), data: data }));
+    } catch (e) { /* modo privado o almacenamiento lleno: se ignora */ }
+  }
+
+  /* ---------------- origen A: proxy con caché ---------------- */
+
+  function fetchFromProxy() {
+    return fetch(LF_REVIEWS.proxyUrl, { cache: "no-store" })
+      .then(function (r) {
+        if (!r.ok) throw new Error("Proxy respondió " + r.status);
+        return r.json();
+      })
+      .then(function (d) {
+        return {
+          rating: Number(d.rating) || 0,
+          total: Number(d.userRatingCount || d.total) || 0,
+          reviews: (d.reviews || []).map(function (rv) {
+            return {
+              name: (rv.authorAttribution && rv.authorAttribution.displayName) || rv.name || "Cliente de Google",
+              photo: (rv.authorAttribution && rv.authorAttribution.photoUri) || rv.photo || "",
+              uri: (rv.authorAttribution && rv.authorAttribution.uri) || rv.uri || "",
+              rating: Number(rv.rating) || 0,
+              when: rv.relativePublishTimeDescription || rv.when || "",
+              text: (rv.text && rv.text.text) || rv.text || "",
+              source: "Google"
+            };
+          })
+        };
+      });
+  }
+
+  /* ---------------- origen B: API de Google en el navegador ---------------- */
+
+  var mapsPromise = null;
+  function loadMapsJs() {
+    if (mapsPromise) return mapsPromise;
+    mapsPromise = new Promise(function (resolve, reject) {
+      window.lfMapsReady = function () { resolve(); };
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://maps.googleapis.com/maps/api/js?key=" + encodeURIComponent(LF_REVIEWS.apiKey) +
+              "&v=weekly&libraries=places&language=" + LF_REVIEWS.language +
+              "&loading=async&callback=lfMapsReady";
+      s.onerror = function () { reject(new Error("No se pudo cargar la API de Google Maps")); };
+      document.head.appendChild(s);
+    });
+    return mapsPromise;
+  }
+
+  function fetchFromGoogle() {
+    return loadMapsJs()
+      .then(function () { return google.maps.importLibrary("places"); })
+      .then(function (lib) {
+        var place = new lib.Place({ id: PID, requestedLanguage: LF_REVIEWS.language });
+        return place.fetchFields({ fields: ["displayName", "rating", "userRatingCount", "reviews"] });
+      })
+      .then(function (res) {
+        var p = res.place;
+        return {
+          rating: p.rating || 0,
+          total: p.userRatingCount || 0,
+          reviews: (p.reviews || []).map(function (rv) {
+            var a = rv.authorAttribution || {};
+            return {
+              name: a.displayName || "Cliente de Google",
+              photo: a.photoURI || "",
+              uri: a.uri || "",
+              rating: rv.rating || 0,
+              when: rv.relativePublishTimeDescription || "",
+              text: typeof rv.text === "string" ? rv.text : ((rv.text && rv.text.text) || ""),
+              source: "Google"
+            };
+          })
+        };
+      });
+  }
+
+  /* ---------------- pintado ---------------- */
+
+  function buildCard(rv) {
+    var card = document.createElement("article");
+    card.className = "rv-card";
+
+    var head = document.createElement("div");
+    head.className = "rv-head";
+
+    if (rv.photo) {
+      var img = document.createElement("img");
+      img.className = "rv-avatar";
+      img.src = rv.photo;
+      img.alt = "";
+      img.loading = "lazy";
+      img.referrerPolicy = "no-referrer";
+      img.onerror = function () { this.replaceWith(initialsAvatar(rv.name)); };
+      head.appendChild(img);
+    } else {
+      head.appendChild(initialsAvatar(rv.name));
+    }
+
+    var who = document.createElement("div");
+    who.className = "rv-who";
+    var name = document.createElement(rv.uri ? "a" : "span");
+    name.className = "rv-name";
+    name.textContent = rv.name;
+    if (rv.uri) { name.href = rv.uri; name.target = "_blank"; name.rel = "noopener nofollow"; }
+    var when = document.createElement("span");
+    when.className = "rv-when";
+    when.textContent = rv.when || "";
+    who.appendChild(name);
+    who.appendChild(when);
+    head.appendChild(who);
+    card.appendChild(head);
+
+    var st = document.createElement("div");
+    st.className = "rv-stars";
+    starsSVG(rv.rating, st);
+    card.appendChild(st);
+
+    var p = document.createElement("p");
+    p.className = "rv-text";
+    p.textContent = rv.text;
+    card.appendChild(p);
+
+    if ((rv.text || "").length > 260) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "rv-more";
+      btn.textContent = "Leer completa";
+      btn.addEventListener("click", function () {
+        var open = p.classList.toggle("open");
+        btn.textContent = open ? "Mostrar menos" : "Leer completa";
+      });
+      card.appendChild(btn);
+    }
+
+    var src = document.createElement("div");
+    src.className = "rv-src";
+    if (rv.source === "Google") {
+      src.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+        '<path fill="#4285F4" d="M23 12.27c0-.82-.07-1.6-.21-2.36H12v4.47h6.16a5.27 5.27 0 0 1-2.29 3.46v2.88h3.7C21.72 18.7 23 15.76 23 12.27z"/>' +
+        '<path fill="#34A853" d="M12 23.5c3.1 0 5.7-1.03 7.6-2.78l-3.71-2.88c-1.03.69-2.35 1.1-3.89 1.1-2.99 0-5.52-2.02-6.43-4.73H1.73v2.97A11.49 11.49 0 0 0 12 23.5z"/>' +
+        '<path fill="#FBBC05" d="M5.57 14.21a6.9 6.9 0 0 1 0-4.42V6.82H1.73a11.5 11.5 0 0 0 0 10.36l3.84-2.97z"/>' +
+        '<path fill="#EA4335" d="M12 5.06c1.69 0 3.2.58 4.4 1.72l3.29-3.29C17.7 1.63 15.1.5 12 .5 7.53.5 3.67 3.07 1.73 6.82l3.84 2.97C6.48 7.08 9.01 5.06 12 5.06z"/></svg>';
+      src.appendChild(document.createTextNode("Publicada en Google"));
+    } else {
+      src.textContent = rv.source || "";
+    }
+    card.appendChild(src);
+
+    return card;
+  }
+
+  function initialsAvatar(name) {
+    var d = document.createElement("div");
+    d.className = "rv-avatar-fb";
+    d.textContent = (name || "?").trim().charAt(0).toUpperCase();
+    return d;
+  }
+
+  function renderEmpty() {
+    track.textContent = "";
+    var box = document.createElement("div");
+    box.className = "rv-empty";
+    box.style.flex = "1 1 100%";
+    var h = document.createElement("h3");
+    h.textContent = "Todavía no hay reseñas publicadas";
+    var p = document.createElement("p");
+    p.textContent = "En cuanto lleguen las primeras opiniones aparecerán aquí automáticamente.";
+    var a = document.createElement("a");
+    a.className = "btn-primary";
+    a.href = URL_WRITE;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = "Dejar la primera reseña";
+    box.appendChild(h); box.appendChild(p); box.appendChild(a);
+    track.appendChild(box);
+  }
+
+  function render(data) {
+    var list = (data.reviews || []).filter(function (r) {
+      return r.rating >= LF_REVIEWS.minRating && (r.text || "").trim().length > 0;
+    });
+    list = list.concat(LF_REVIEWS.extraReviews || []);
+
+    // Resumen
+    if (data.rating > 0) {
+      $("rv-rating").innerHTML = data.rating.toFixed(1).replace(".", ",") + '<small>/ 5</small>';
+      starsSVG(data.rating, $("rv-rating-stars"));
+      $("rv-count").textContent = data.total === 1
+        ? "Basado en 1 reseña verificada en Google"
+        : "Basado en " + data.total.toLocaleString("es-ES") + " reseñas verificadas en Google";
+      showBadge(data);
+    } else {
+      $("rv-rating").innerHTML = '—<small>/ 5</small>';
+      $("rv-count").textContent = "Aún sin valoraciones en Google.";
+    }
+
+    if (!list.length) { renderEmpty(); return; }
+
+    track.textContent = "";
+    list.forEach(function (rv) { track.appendChild(buildCard(rv)); });
+    setupNav();
+  }
+
+  function showBadge(data) {
+    if (!LF_REVIEWS.floatingBadge) return;
+    try { if (sessionStorage.getItem("lf_badge_off") === "1") return; } catch (e) {}
+    var badge = $("rv-badge");
+    if (!badge) return;
+    $("rv-badge-num").textContent = data.rating.toFixed(1).replace(".", ",");
+    starsSVG(data.rating, $("rv-badge-stars"));
+    $("rv-badge-txt").textContent = data.total + (data.total === 1 ? " reseña en Google" : " reseñas en Google");
+    $("rv-badge-link").href = URL_ALL;
+    badge.classList.add("show");
+    $("rv-badge-close").addEventListener("click", function (e) {
+      e.preventDefault();
+      badge.classList.remove("show");
+      try { sessionStorage.setItem("lf_badge_off", "1"); } catch (err) {}
+    });
+  }
+
+  /* ---------------- navegación del carrusel ---------------- */
+
+  function setupNav() {
+    var nav = $("rv-nav"), prev = $("rv-prev"), next = $("rv-next"), bar = $("rv-progress-bar");
+    if (!nav) return;
+    nav.hidden = false;
+
+    function step() {
+      var card = track.querySelector(".rv-card");
+      return card ? card.getBoundingClientRect().width + 20 : track.clientWidth * 0.8;
+    }
+    prev.addEventListener("click", function () { track.scrollBy({ left: -step(), behavior: "smooth" }); });
+    next.addEventListener("click", function () { track.scrollBy({ left: step(), behavior: "smooth" }); });
+
+    function update() {
+      var max = track.scrollWidth - track.clientWidth;
+      prev.disabled = track.scrollLeft <= 4;
+      next.disabled = track.scrollLeft >= max - 4;
+      var visible = Math.min(1, track.clientWidth / Math.max(track.scrollWidth, 1));
+      bar.style.width = (visible * 100) + "%";
+      bar.style.left = (max > 0 ? (track.scrollLeft / max) * (100 - visible * 100) : 0) + "%";
+      nav.style.display = max > 4 ? "flex" : "none";
+    }
+    track.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  }
+
+  /* ---------------- diagnostico ---------------- */
+
+  function diagnose(err) {
+    if (!LF_REVIEWS.debug) return;
+    var origin = location.protocol + "//" + location.host;
+    var lines = [
+      "--- Diagnostico de reseñas Linkfortis ---",
+      "Origen desde el que se pide: " + (location.protocol === "file:" ? "file:// (archivo local)" : origin),
+      "Modo: " + (LF_REVIEWS.proxyUrl ? "proxy (" + LF_REVIEWS.proxyUrl + ")" : "clave directa en el navegador"),
+      "Place ID: " + PID,
+      "Error: " + (err && err.message ? err.message : err),
+      "",
+      "Revisa en este orden:",
+      "1. Si estas abriendo el archivo con doble clic (file://), Google rechaza la peticion.",
+      "   Sirvelo por http: en la carpeta ejecuta  python3 -m http.server 8080",
+      "2. La clave debe permitir este origen exacto en Restricciones de aplicacion > Sitios web.",
+      "   Anade tambien http://localhost:8080/* mientras pruebas.",
+      "3. Deben estar habilitadas 'Places API (New)' Y 'Maps JavaScript API'.",
+      "4. El proyecto de Google Cloud necesita facturacion activa aunque no llegues a pagar.",
+      "5. Si la consola muestra RefererNotAllowedMapError, ApiNotActivatedMapError o",
+      "   BillingNotEnabledMapError, el punto 2, 3 o 4 respectivamente es la causa."
+    ];
+    console.info(lines.join("\n"));
+  }
+
+  /* ---------------- arranque perezoso ---------------- */
+
+  var started = false;
+  function start() {
+    if (started) return;
+    started = true;
+
+    var cached = readCache();
+    if (cached) { render(cached); return; }
+
+    var source = LF_REVIEWS.proxyUrl
+      ? fetchFromProxy()
+      : (LF_REVIEWS.apiKey && LF_REVIEWS.apiKey.indexOf("PON_AQUI") === -1
+          ? fetchFromGoogle()
+          : Promise.reject(new Error("Falta configurar proxyUrl o apiKey")));
+
+    source
+      .then(function (data) { writeCache(data); render(data); })
+      .catch(function (err) {
+        console.warn("[Linkfortis] No se pudieron cargar las reseñas de Google:", err.message);
+        diagnose(err);
+        // Pase lo que pase, actualizamos SIEMPRE el resumen (#rv-rating / #rv-count)
+        // en vez de dejarlo congelado en "Cargando valoraciones…". render() ya se
+        // encarga de mostrar el mensaje de "sin reseñas todavía" si la lista queda vacía.
+        render({ rating: 0, total: 0, reviews: [] });
+      });
+  }
+
+  wireLinks();
+
+  // Solo se llama a la API cuando la sección se acerca a la pantalla.
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { io.disconnect(); start(); } });
+    }, { rootMargin: "300px" });
+    io.observe(document.getElementById("resenas"));
+  } else {
+    start();
+  }
+})();
+</script>
+
+</body>
+</html>
