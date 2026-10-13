@@ -111,7 +111,7 @@
   .hero-meta div{font-size:0.85rem;color:var(--muted);}
   .hero-meta strong{display:block;color:var(--ink);font-family:'Space Grotesk';font-size:1.3rem;font-weight:600;}
   .hero-visual{position:relative;}
-  .hero-visual img{
+  .hero-visual video, .hero-visual img{
     border-radius:var(--radius-s);
     box-shadow:0 24px 48px -20px rgba(18,43,51,0.35);
   }
@@ -270,7 +270,7 @@
   }
 
   /* ================================================================
-     RESEÑAS DE GOOGLE — bloque añadido
+     RESEÑAS DE GOOGLE — bloque CSS
      ================================================================ */
   .reviews{
     background:var(--paper);
@@ -611,11 +611,11 @@
       <span></span><span></span><span></span>
     </button>
     <nav class="nav-links">
-      <a href="#resenas">Reseñas</a>
       <a href="#como-funciona">Cómo funciona</a>
       <a href="#producto">Producto</a>
       <a href="#reviewshield">ReviewShield</a>
       <a href="#por-que-nfc">Por qué NFC</a>
+      <a href="#resenas">Reseñas</a>
       <a href="/contacto/">Contacto</a>
       <a class="nav-cta nav-cta-mobile" href="https://wa.me/34643380339?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20tarjetas%20NFC%20de%20Linkfortis" target="_blank" rel="noopener">Pedir por WhatsApp</a>
     </nav>
@@ -640,7 +640,10 @@
       </div>
     </div>
     <div class="hero-visual">
-      <img src="/img/tj_review_far.jpeg" alt="Tarjeta NFC de reseñas de Google en el mostrador de un comercio">
+      <video autoplay muted loop playsinline style="width: 100%; height: auto; border-radius: var(--radius-s); box-shadow: 0 24px 48px -20px rgba(18,43,51,0.35); display: block;">
+        <source src="/videos/nfc_demo.mp4" type="video/mp4">
+        Tu navegador no soporta la reproducción de vídeo.
+      </video>
       <div class="tag">Acerca el móvil<span>y listo — sin apps</span></div>
     </div>
   </div>
@@ -655,68 +658,6 @@
     </svg>
     <p><strong>¿Qué es NFC?</strong> Es la misma tecnología que usas para pagar con el móvil en el datáfono. Casi todos los smartphones fabricados en la última década la llevan integrada: no hace falta abrir la cámara, enfocar ni instalar ninguna aplicación.</p>
   </div>
-</div>
-
-<!-- ================================================================
-     RESEÑAS DE GOOGLE — sección añadida
-     ================================================================ -->
-<section class="reviews" id="resenas">
-  <div class="wrap">
-
-    <div class="rv-top">
-      <div class="rv-score">
-        <div class="rv-number" id="rv-rating">—<small>/ 5</small></div>
-        <div class="rv-stars" id="rv-rating-stars"></div>
-        <p class="rv-count" id="rv-count">Cargando valoraciones…</p>
-        <a class="rv-cta" id="rv-write" href="#" target="_blank" rel="noopener">Escribir una reseña</a>
-        <div class="rv-google">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="#4285F4" d="M23 12.27c0-.82-.07-1.6-.21-2.36H12v4.47h6.16a5.27 5.27 0 0 1-2.29 3.46v2.88h3.7C21.72 18.7 23 15.76 23 12.27z"/>
-            <path fill="#34A853" d="M12 23.5c3.1 0 5.7-1.03 7.6-2.78l-3.71-2.88c-1.03.69-2.35 1.1-3.89 1.1-2.99 0-5.52-2.02-6.43-4.73H1.73v2.97A11.49 11.49 0 0 0 12 23.5z"/>
-            <path fill="#FBBC05" d="M5.57 14.21a6.9 6.9 0 0 1 0-4.42V6.82H1.73a11.5 11.5 0 0 0 0 10.36l3.84-2.97z"/>
-            <path fill="#EA4335" d="M12 5.06c1.69 0 3.2.58 4.4 1.72l3.29-3.29C17.7 1.63 15.1.5 12 .5 7.53.5 3.67 3.07 1.73 6.82l3.84 2.97C6.48 7.08 9.01 5.06 12 5.06z"/>
-          </svg>
-          <span>Datos obtenidos de Google</span>
-        </div>
-      </div>
-
-      <div class="rv-intro">
-        <span class="rv-live"><i></i>Sincronizado con nuestro perfil de Google</span>
-        <h2>Lo que dicen los negocios que ya tienen su tarjeta</h2>
-        <p>Estas opiniones se leen directamente de nuestra ficha de Google y se actualizan solas, sin que nadie las escriba a mano. Es exactamente lo que tu tarjeta hará por tu negocio: convertir clientes contentos en reseñas visibles.</p>
-      </div>
-    </div>
-
-    <div class="rv-carousel">
-      <div class="rv-track" id="rv-track" tabindex="0" aria-label="Reseñas de clientes">
-        <div class="rv-skeleton"><div class="bar w40"></div><div class="bar w90"></div><div class="bar w90"></div><div class="bar w70"></div></div>
-        <div class="rv-skeleton"><div class="bar w40"></div><div class="bar w90"></div><div class="bar w70"></div><div class="bar w90"></div></div>
-        <div class="rv-skeleton"><div class="bar w40"></div><div class="bar w70"></div><div class="bar w90"></div><div class="bar w90"></div></div>
-      </div>
-      <div class="rv-nav" id="rv-nav" hidden>
-        <button type="button" id="rv-prev" aria-label="Reseña anterior">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button type="button" id="rv-next" aria-label="Reseña siguiente">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
-        <div class="rv-progress"><i id="rv-progress-bar"></i></div>
-        <a class="rv-all" id="rv-all" href="#" target="_blank" rel="noopener">Ver todas en Google</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<div class="rv-badge" id="rv-badge">
-  <a class="rv-badge-link" id="rv-badge-link" href="#" target="_blank" rel="noopener">
-    <span class="rv-badge-num" id="rv-badge-num">—</span>
-    <span>
-      <span class="rv-stars" id="rv-badge-stars"></span>
-      <span class="rv-badge-txt" id="rv-badge-txt">Reseñas en Google</span>
-    </span>
-  </a>
-  <button class="rv-badge-close" type="button" id="rv-badge-close" aria-label="Ocultar insignia de reseñas">×</button>
 </div>
 
 <section class="section" id="como-funciona">
@@ -779,7 +720,7 @@
 </section>
 
 <!-- ================================================================
-     REVIEWSHIELD — sección añadida
+     REVIEWSHIELD — servicio añadido
      ================================================================ -->
 <section class="rs" id="reviewshield">
   <div class="wrap">
@@ -846,6 +787,31 @@
         </div>
         <h3>Protección de marca</h3>
         <p>Manejar la queja internamente y a tiempo desactiva el impulso psicológico de venganza y frustración antes de que el cliente decida plasmarlo en una reseña pública</p>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         VÍDEO DEMOSTRATIVO DE REVIEWSHIELD (Incrustado por iframe)
+         ================================================================ -->
+    <div style="margin-top: 56px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-s); padding: 32px;">
+      <div style="text-align: center; max-width: 65ch; margin: 0 auto 28px;">
+        <span class="rs-eyebrow" style="margin-bottom: 12px; display: inline-flex;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          Demostración en vídeo
+        </span>
+        <h3 style="font-size: 1.6rem; margin-bottom: 10px;">Mira cómo funciona ReviewShield paso a paso</h3>
+        <p style="margin: 0 auto; font-size: 0.98rem;">Descubre en menos de un minuto cómo atajamos las valoraciones negativas en privado y potenciamos tus 5 estrellas en Google.</p>
+      </div>
+
+      <!-- Contenedor responsive 16:9 para el iframe -->
+      <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: var(--radius-s); background: #000; box-shadow: 0 16px 32px -16px rgba(18,43,51,0.3);">
+        <iframe 
+          src="/videos/player.html" 
+          title="Demostración de ReviewShield"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
       </div>
     </div>
 
@@ -927,6 +893,68 @@
   </div>
 </section>
 
+<!-- ================================================================
+     RESEÑAS DE GOOGLE — trasladada al final
+     ================================================================ -->
+<section class="reviews" id="resenas">
+  <div class="wrap">
+
+    <div class="rv-top">
+      <div class="rv-score">
+        <div class="rv-number" id="rv-rating">—<small>/ 5</small></div>
+        <div class="rv-stars" id="rv-rating-stars"></div>
+        <p class="rv-count" id="rv-count">Cargando valoraciones…</p>
+        <a class="rv-cta" id="rv-write" href="#" target="_blank" rel="noopener">Escribir una reseña</a>
+        <div class="rv-google">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#4285F4" d="M23 12.27c0-.82-.07-1.6-.21-2.36H12v4.47h6.16a5.27 5.27 0 0 1-2.29 3.46v2.88h3.7C21.72 18.7 23 15.76 23 12.27z"/>
+            <path fill="#34A853" d="M12 23.5c3.1 0 5.7-1.03 7.6-2.78l-3.71-2.88c-1.03.69-2.35 1.1-3.89 1.1-2.99 0-5.52-2.02-6.43-4.73H1.73v2.97A11.49 11.49 0 0 0 12 23.5z"/>
+            <path fill="#FBBC05" d="M5.57 14.21a6.9 6.9 0 0 1 0-4.42V6.82H1.73a11.5 11.5 0 0 0 0 10.36l3.84-2.97z"/>
+            <path fill="#EA4335" d="M12 5.06c1.69 0 3.2.58 4.4 1.72l3.29-3.29C17.7 1.63 15.1.5 12 .5 7.53.5 3.67 3.07 1.73 6.82l3.84 2.97C6.48 7.08 9.01 5.06 12 5.06z"/>
+          </svg>
+          <span>Datos obtenidos de Google</span>
+        </div>
+      </div>
+
+      <div class="rv-intro">
+        <span class="rv-live"><i></i>Sincronizado con nuestro perfil de Google</span>
+        <h2>Lo que dicen los negocios que ya tienen su tarjeta</h2>
+        <p>Estas opiniones se leen directamente de nuestra ficha de Google y se actualizan solas, sin que nadie las escriba a mano. Es exactamente lo que tu tarjeta hará por tu negocio: convertir clientes contentos en reseñas visibles.</p>
+      </div>
+    </div>
+
+    <div class="rv-carousel">
+      <div class="rv-track" id="rv-track" tabindex="0" aria-label="Reseñas de clientes">
+        <div class="rv-skeleton"><div class="bar w40"></div><div class="bar w90"></div><div class="bar w90"></div><div class="bar w70"></div></div>
+        <div class="rv-skeleton"><div class="bar w40"></div><div class="bar w90"></div><div class="bar w70"></div><div class="bar w90"></div></div>
+        <div class="rv-skeleton"><div class="bar w40"></div><div class="bar w70"></div><div class="bar w90"></div><div class="bar w90"></div></div>
+      </div>
+      <div class="rv-nav" id="rv-nav" hidden>
+        <button type="button" id="rv-prev" aria-label="Reseña anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button type="button" id="rv-next" aria-label="Reseña siguiente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <div class="rv-progress"><i id="rv-progress-bar"></i></div>
+        <a class="rv-all" id="rv-all" href="#" target="_blank" rel="noopener">Ver todas en Google</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="rv-badge" id="rv-badge">
+  <a class="rv-badge-link" id="rv-badge-link" href="#" target="_blank" rel="noopener">
+    <span class="rv-badge-num" id="rv-badge-num">—</span>
+    <span>
+      <span class="rv-stars" id="rv-badge-stars"></span>
+      <span class="rv-badge-txt" id="rv-badge-txt">Reseñas en Google</span>
+    </span>
+  </a>
+  <button class="rv-badge-close" type="button" id="rv-badge-close" aria-label="Ocultar insignia de reseñas">×</button>
+</div>
+
 <footer>
   <div class="wrap foot-row">
     <div>
@@ -946,7 +974,6 @@
 
 <!-- ================================================================
      RESEÑAS DE GOOGLE — motor de sincronización
-     Configura todo en LF_REVIEWS. No hace falta tocar nada más.
      ================================================================ -->
 <script>
 (function () {
@@ -954,52 +981,19 @@
 
   /* ---------------- CONFIGURACIÓN ---------------- */
   var LF_REVIEWS = {
-
-    // Ficha de Google del negocio (Place ID).
     placeId: "ChIJ7RkA49yxFiYRfknrjHdrgl8",
-
-    // Enlace del boton "Escribir una resena".
     writeReviewUrl: "https://www.google.com/search?hl=es-419&gl=es&q=linkfortis&ludocid=6882181341785049470&lsig=AB86z5XzyXSkO6jL0miPtljUmqJt#lrd=0x2616b1dce30019ed:0x5f826b778ceb497e,3",
-
-    // Enlace de "Ver todas en Google" y de la insignia flotante.
     allReviewsUrl: "https://www.google.com/search?hl=es-419&gl=es&q=linkfortis&ludocid=6882181341785049470&lsig=AB86z5XzyXSkO6jL0miPtljUmqJt#lrd=0x2616b1dce30019ed:0x5f826b778ceb497e,1",
-
-    // Mensajes de diagnostico en la consola del navegador.
-    // Ponlo en false cuando la web ya este publicada y funcionando.
     debug: true,
-
-    // OPCIÓN A (recomendada): URL del proxy con caché (Google Apps Script
-    // o Cloudflare Worker). Si la rellenas, la clave NO viaja al navegador
-    // y el consumo de la API baja a unas pocas llamadas al día.
     proxyUrl: "",
-
-    // OPCIÓN B (sin backend): clave de Google Maps Platform.
-    // Solo se usa si proxyUrl está vacío. Restríngela por dominio.
     apiKey: "AIzaSyDlJfL_xRtyjJjzJB_YBFPgOKEdZOI2vBc",
-
-    // Horas que se guardan las reseñas en el navegador antes de volver a pedirlas.
-    // Google no permite cachear datos de Places más de 30 días.
     cacheHours: 12,
-
-    // Solo se muestran reseñas con esta puntuación o superior.
     minRating: 4,
-
-    // Mostrar la insignia flotante en la esquina inferior izquierda.
     floatingBadge: true,
-
-    // Idioma en el que se piden las reseñas.
     language: "es",
-
-    // Opiniones propias que se añaden DESPUÉS de las de Google.
-    // Google solo devuelve un máximo de 5 reseñas por ficha.
-    // Déjalo vacío o añade objetos como el del ejemplo comentado.
-    extraReviews: [
-      // { name:"Nombre del cliente", rating:5, when:"Marzo de 2026",
-      //   text:"Texto textual de la opinión.", source:"Cliente de Linkfortis" }
-    ]
+    extraReviews: []
   };
   /* -------------- FIN DE LA CONFIGURACIÓN -------------- */
-
 
   var CACHE_KEY = "lf_google_reviews_v1";
   var PID = LF_REVIEWS.placeId;
@@ -1012,8 +1006,6 @@
   var track = $("rv-track");
   if (!track) return;
 
-  // Los enlaces a Google se asignan de inmediato, sin depender de que la API
-  // responda. Así el botón funciona aunque las reseñas no lleguen a cargar.
   function wireLinks() {
     var w = $("rv-write");
     if (w) { w.href = URL_WRITE; w.target = "_blank"; w.rel = "noopener"; }
@@ -1022,8 +1014,6 @@
     var b = $("rv-badge-link");
     if (b) { b.href = URL_ALL; b.target = "_blank"; b.rel = "noopener"; }
   }
-
-  /* ---------------- utilidades ---------------- */
 
   function starsSVG(rating, container) {
     container.textContent = "";
@@ -1057,10 +1047,8 @@
   function writeCache(data) {
     try {
       localStorage.setItem(CACHE_KEY, JSON.stringify({ pid: PID, t: Date.now(), data: data }));
-    } catch (e) { /* modo privado o almacenamiento lleno: se ignora */ }
+    } catch (e) {}
   }
-
-  /* ---------------- origen A: proxy con caché ---------------- */
 
   function fetchFromProxy() {
     return fetch(LF_REVIEWS.proxyUrl, { cache: "no-store" })
@@ -1086,8 +1074,6 @@
         };
       });
   }
-
-  /* ---------------- origen B: API de Google en el navegador ---------------- */
 
   var mapsPromise = null;
   function loadMapsJs() {
@@ -1132,8 +1118,6 @@
         };
       });
   }
-
-  /* ---------------- pintado ---------------- */
 
   function buildCard(rv) {
     var card = document.createElement("article");
@@ -1240,7 +1224,6 @@
     });
     list = list.concat(LF_REVIEWS.extraReviews || []);
 
-    // Resumen
     if (data.rating > 0) {
       $("rv-rating").innerHTML = data.rating.toFixed(1).replace(".", ",") + '<small>/ 5</small>';
       starsSVG(data.rating, $("rv-rating-stars"));
@@ -1277,8 +1260,6 @@
     });
   }
 
-  /* ---------------- navegación del carrusel ---------------- */
-
   function setupNav() {
     var nav = $("rv-nav"), prev = $("rv-prev"), next = $("rv-next"), bar = $("rv-progress-bar");
     if (!nav) return;
@@ -1305,8 +1286,6 @@
     update();
   }
 
-  /* ---------------- diagnostico ---------------- */
-
   function diagnose(err) {
     if (!LF_REVIEWS.debug) return;
     var origin = location.protocol + "//" + location.host;
@@ -1330,8 +1309,6 @@
     console.info(lines.join("\n"));
   }
 
-  /* ---------------- arranque perezoso ---------------- */
-
   var started = false;
   function start() {
     if (started) return;
@@ -1351,16 +1328,12 @@
       .catch(function (err) {
         console.warn("[Linkfortis] No se pudieron cargar las reseñas de Google:", err.message);
         diagnose(err);
-        // Pase lo que pase, actualizamos SIEMPRE el resumen (#rv-rating / #rv-count)
-        // en vez de dejarlo congelado en "Cargando valoraciones…". render() ya se
-        // encarga de mostrar el mensaje de "sin reseñas todavía" si la lista queda vacía.
         render({ rating: 0, total: 0, reviews: [] });
       });
   }
 
   wireLinks();
 
-  // Solo se llama a la API cuando la sección se acerca a la pantalla.
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { io.disconnect(); start(); } });
