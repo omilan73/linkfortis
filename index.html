@@ -111,12 +111,19 @@
   .hero-meta div{font-size:0.85rem;color:var(--muted);}
   .hero-meta strong{display:block;color:var(--ink);font-family:'Space Grotesk';font-size:1.3rem;font-weight:600;}
   .hero-visual{position:relative;}
+  
+  .hero-video-container {
+    max-width: 380px;
+    margin: 0 auto;
+    position: relative;
+  }
+
   .hero-visual video, .hero-visual img{
     border-radius:var(--radius-s);
     box-shadow:0 24px 48px -20px rgba(18,43,51,0.35);
   }
   .hero-visual .tag{
-    position:absolute;bottom:-18px;left:-18px;
+    position:absolute;bottom:-18px;left:calc(50% - 190px - 18px);
     background:var(--ink);color:#fff;
     padding:14px 20px;border-radius:var(--radius-s);
     font-family:'Space Grotesk';font-size:0.95rem;font-weight:500;
@@ -267,6 +274,7 @@
     .order-grid{grid-template-columns:1fr;gap:40px;}
     .foot-row{flex-direction:column;align-items:flex-start;}
     .foot-right{text-align:left;}
+    .web-banner-grid { grid-template-columns: 1fr !important; }
   }
 
   /* ================================================================
@@ -570,18 +578,20 @@
   }
   .rs-demo .btn-ghost:hover{border-color:#fff;}
 
-  /* aviso de novedad en el hero */
+  /* --- Botón llamativo en el Hero --- */
   .hero-new{
     display:inline-flex;align-items:center;gap:10px;margin-bottom:22px;
-    background:var(--panel);border:1px solid var(--line);border-radius:999px;
-    padding:6px 14px 6px 6px;font-size:0.85rem;color:var(--ink);text-decoration:none;
+    background:var(--teal-deep);color:#fff;border-radius:999px;
+    padding:6px 16px 6px 6px;font-size:0.88rem;text-decoration:none;
+    box-shadow:0 8px 20px -6px rgba(18,43,51,0.3);
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
   }
   .hero-new b{
-    background:var(--teal);color:#fff;font-family:'Space Grotesk';font-weight:600;
-    font-size:0.68rem;letter-spacing:0.05em;text-transform:uppercase;
+    background:var(--sage);color:var(--ink);font-family:'Space Grotesk';font-weight:600;
+    font-size:0.7rem;letter-spacing:0.05em;text-transform:uppercase;
     padding:4px 10px;border-radius:999px;
   }
-  .hero-new:hover{border-color:var(--teal);}
+  .hero-new:hover{transform:translateY(-2px);box-shadow:0 12px 24px -6px rgba(18,43,51,0.4);color:#fff;}
 
   @media (max-width:980px){
     .rs h2{font-size:2rem;max-width:none;}
@@ -614,6 +624,7 @@
       <a href="#como-funciona">Cómo funciona</a>
       <a href="#producto">Producto</a>
       <a href="#reviewshield">ReviewShield</a>
+      <a href="#creacion-web">Páginas Web</a>
       <a href="#por-que-nfc">Por qué NFC</a>
       <a href="#resenas">Reseñas</a>
       <a href="/contacto/">Contacto</a>
@@ -626,6 +637,7 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
+      <!-- Botón superior modernizado y mucho más llamativo -->
       <a class="hero-new" href="#reviewshield"><b>Nuevo</b>ReviewShield: el escudo de tu nota en Google →</a>
       <h1>Que cada mostrador consiga tu próxima reseña de Google</h1>
       <p class="lede">Tarjetas con tecnología NFC para tu negocio: el cliente acerca el móvil y se abre directamente tu ficha de Google o un WhatsApp ya redactado. Sin cámara, sin códigos QR, sin instalar nada.</p>
@@ -640,11 +652,13 @@
       </div>
     </div>
     <div class="hero-visual">
-      <video autoplay muted loop playsinline style="width: 100%; height: auto; border-radius: var(--radius-s); box-shadow: 0 24px 48px -20px rgba(18,43,51,0.35); display: block;">
-        <source src="/videos/nfc_demo.mp4" type="video/mp4">
-        Tu navegador no soporta la reproducción de vídeo.
-      </video>
-      <div class="tag">Acerca el móvil<span>y listo — sin apps</span></div>
+      <div class="hero-video-container">
+        <video autoplay muted loop playsinline style="width: 100%; height: auto; border-radius: var(--radius-s); box-shadow: 0 24px 48px -20px rgba(18,43,51,0.35); display: block;">
+          <source src="/videos/nfc_demo.mp4" type="video/mp4">
+          Tu navegador no soporta la reproducción de vídeo.
+        </video>
+        <div class="tag">Acerca el móvil<span>y listo — sin apps</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -803,7 +817,6 @@
         <p style="margin: 0 auto; font-size: 0.98rem;">Descubre en menos de un minuto cómo atajamos las valoraciones negativas en privado y potenciamos tus 5 estrellas en Google.</p>
       </div>
 
-      <!-- Contenedor responsive 16:9 para el iframe -->
       <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: var(--radius-s); background: #000; box-shadow: 0 16px 32px -16px rgba(18,43,51,0.3);">
         <iframe 
           src="/videos/player.html" 
@@ -826,6 +839,31 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- ================================================================
+     NUEVA SECCIÓN: CREACIÓN DE PÁGINAS WEB (linkfortis.com/web)
+     ================================================================ -->
+<section class="section" id="creacion-web" style="background:var(--panel); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="head-row">
+      <h2>Diseño y desarrollo web profesional</h2>
+      <p>Creamos páginas web a medida, rápidas y optimizadas para negocios que buscan destacar.</p>
+    </div>
+    <div style="background:var(--paper); border:1px solid var(--line); border-radius:var(--radius-s); padding:40px; display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center;" class="web-banner-grid">
+      <div>
+        <span class="rs-eyebrow" style="margin-bottom:14px; display:inline-flex;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Nuevo servicio
+        </span>
+        <h3 style="font-size: 1.5rem; margin-bottom: 10px;">¿Necesitas una página web para tu negocio?</h3>
+        <p style="margin: 0; font-size: 1rem; max-width: 60ch;">Diseños limpios, adaptados a móviles (responsive), velocidad de carga ultrarrápida y enfocados en convertir visitantes en clientes reales.</p>
+      </div>
+      <div>
+        <a class="btn-primary" href="https://linkfortis.com/web" target="_blank" rel="noopener">Ver servicio web →</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -877,15 +915,15 @@
   <div class="wrap section">
     <div class="order-grid">
       <div>
-        <h2>Pide tu tarjeta o consulta ReviewShield</h2>
-        <p>Cuéntanos si quieres la tarjeta de reseñas de Google, la de contacto WhatsApp, ambas, o si te interesa ReviewShield para proteger tu nota media, y te respondemos directamente por chat.</p>
+        <h2>Pide tu tarjeta o consulta nuestros servicios</h2>
+        <p>Cuéntanos si quieres la tarjeta de reseñas de Google, la de contacto WhatsApp, desarrollo web o ReviewShield para proteger tu nota media, y te respondemos directamente por chat.</p>
       </div>
       <div class="order-panel">
         <div class="line"><span>Tarjeta de reseñas Google</span><strong>19€</strong></div>
         <div class="line"><span>Tarjeta de contacto WhatsApp</span><strong>19€</strong></div>
         <div class="line"><span>ReviewShield · Escudo de reseñas</span><strong>Consultar</strong></div>
-        <div class="line"><span>Tecnología</span><strong>NFC</strong></div>
-        <a class="whatsapp-btn" href="https://wa.me/34643380339?text=Hola%2C%20quiero%20pedir%20una%20tarjeta%20NFC%20de%20Linkfortis" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        <div class="line"><span>Diseño y Desarrollo Web</span><strong>Consultar</strong></div>
+        <a class="whatsapp-btn" href="https://wa.me/34643380339?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20Linkfortis" target="_blank" rel="noopener">Escribir por WhatsApp</a>
         <div class="order-phone">También puedes llamar al <a href="tel:+34643380339">643 380 339</a></div>
         <div class="order-mail">O escribirnos a <a href="mailto:hola@linkfortis.com">hola@linkfortis.com</a></div>
       </div>
