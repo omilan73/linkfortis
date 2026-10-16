@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Páginas web para negocios locales | Linkfortis</title>
+<meta name="description" content="Creamos la página web de tu negocio: rápida, elegante y pensada para que te encuentren en Google y te escriban por WhatsApp. Hostelería, peluquerías, clínicas y comercios.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B1530;        /* azul noche */
+  --ink-2:#14234D;
+  --blue:#2F5BFF;       /* azul eléctrico */
+  --blue-d:#1E40D6;
+  --sky:#EAF0FF;
+  --paper:#F7F9FF;
+  --amber:#FFB43A;      /* acento cálido para CTA */
+  --amber-d:#F59E0B;
+  --text:#27324F;
+  --muted:#5B6787;
+  --line:#DCE4F8;
+  --wa:#25D366;
+  --r:20px;
+  --font-h:'Bricolage Grotesque',system-ui,sans-serif;
+  --font-b:'Instrument Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);color:var(--text);background:#fff;line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--font-h);color:var(--ink);line-height:1.08;letter-spacing:-.02em}
+h1{font-size:clamp(2.4rem,5.6vw,4.2rem);font-weight:800}
+h2{font-size:clamp(1.9rem,3.8vw,2.9rem);font-weight:800}
+h3{font-size:1.25rem;font-weight:700;letter-spacing:-.01em}
+.wrap{width:min(1160px,92%);margin:0 auto}
+section{padding:96px 0}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:6px}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;gap:.6rem;font:600 1rem var(--font-b);text-decoration:none;padding:15px 26px;border-radius:999px;border:2px solid transparent;transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer}
+.btn:hover{transform:translateY(-2px)}
+.btn-main{background:var(--amber);color:var(--ink);box-shadow:0 10px 26px -8px rgba(245,158,11,.7)}
+.btn-main:hover{background:var(--amber-d)}
+.btn-wa{background:var(--wa);color:#06361A;box-shadow:0 10px 26px -10px rgba(37,211,102,.8)}
+.btn-ghost{border-color:rgba(255,255,255,.35);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-line{border-color:var(--ink);color:var(--ink)}
+.btn-line:hover{background:var(--ink);color:#fff}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* Cabecera */
+header{position:sticky;top:0;z-index:50;background:rgba(11,21,48,.92);backdrop-filter:blur(10px)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:88px;gap:16px}
+.nav img{height:60px;width:auto;border-radius:8px}
+.nav nav{display:flex;gap:28px}
+.nav nav a{color:#CBD6F5;text-decoration:none;font-weight:500;font-size:.95rem}
+.nav nav a:hover{color:#fff}
+.nav .btn{padding:10px 20px;font-size:.92rem}
+
+/* Hero */
+.hero{background:radial-gradient(1000px 520px at 85% 10%,rgba(47,91,255,.45),transparent 60%),linear-gradient(160deg,var(--ink) 0%,var(--ink-2) 100%);color:#C9D4F2;padding:84px 0 110px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.hero h1{color:#fff}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.hero p.lead{font-size:1.2rem;margin:24px 0 34px;max-width:36em}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px}
+.hero small{display:block;margin-top:22px;color:#93A3D1;font-size:.92rem}
+.visual{position:relative}
+.visual .photo{border-radius:28px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.65);border:1px solid rgba(255,255,255,.12);aspect-ratio:4/5;background:linear-gradient(135deg,#1E40D6,#0B1530)}
+.visual .photo img{width:100%;height:100%;object-fit:cover}
+.chip{position:absolute;background:#fff;color:var(--ink);border-radius:16px;padding:12px 16px;box-shadow:0 20px 40px -14px rgba(0,0,0,.45);font-weight:600;font-size:.92rem;display:flex;align-items:center;gap:10px}
+.chip i{font-style:normal;display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--sky);font-size:1.05rem}
+.chip.c1{left:-26px;top:12%}
+.chip.c2{right:-18px;bottom:18%}
+.chip small{display:block;color:var(--muted);font-weight:500;font-size:.78rem;margin:0}
+
+/* Franja de sectores */
+.strip{background:var(--paper);border-bottom:1px solid var(--line);padding:26px 0}
+.strip .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:center;color:var(--muted);font-weight:500}
+.strip b{color:var(--ink)}
+
+/* Problema */
+.problem{background:#fff}
+.head{max-width:720px;margin-bottom:52px}
+.head p{margin-top:16px;color:var(--muted);font-size:1.1rem}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pain{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:30px}
+.pain .ic{font-size:1.7rem;margin-bottom:14px}
+.pain p{color:var(--muted);margin-top:8px}
+.pain.dark{background:var(--ink);border-color:var(--ink)}
+.pain.dark h3{color:#fff}
+.pain.dark p{color:#B7C4EA}
+
+/* Qué incluye */
+.what{background:var(--sky)}
+.what-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+.what-img{border-radius:28px;overflow:hidden;background:#fff;padding:40px;display:grid;place-items:center;box-shadow:0 30px 60px -30px rgba(30,64,214,.35)}
+.what-img img{width:min(320px,100%);height:auto}
+.feats{display:grid;grid-template-columns:1fr 1fr;gap:20px 28px;margin-top:34px}
+.feat{display:flex;gap:14px}
+.feat .tick{flex:none;width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:.9rem;margin-top:2px}
+.feat b{display:block;color:var(--ink);font-weight:600}
+.feat span{color:var(--muted);font-size:.95rem}
+
+/* Sectores */
+.sectors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.sec{border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;background:#fff;transition:border-color .2s,transform .2s}
+.sec:hover{border-color:var(--blue);transform:translateY(-3px)}
+.sec .ic{font-size:1.8rem}
+.sec h3{margin:12px 0 6px;font-size:1.1rem}
+.sec p{color:var(--muted);font-size:.93rem}
+
+/* Proceso */
+.process{background:var(--ink);color:#B7C4EA}
+.process h2{color:#fff}
+.process .head p{color:#93A3D1}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
+.step{position:relative;padding:28px 24px;border-radius:var(--r);background:var(--ink-2);border:1px solid rgba(255,255,255,.08);counter-increment:s}
+.step::before{content:counter(s);display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--amber);color:var(--ink);font:800 1.1rem var(--font-h);margin-bottom:18px}
+.step h3{color:#fff;margin-bottom:8px}
+.step p{font-size:.95rem}
+
+/* Por qué yo */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.why{padding:30px;border-radius:var(--r);border:1px solid var(--line)}
+.why h3{margin-bottom:8px}
+.why p{color:var(--muted)}
+
+/* FAQ */
+.faq{background:var(--paper)}
+.faq-list{max-width:820px}
+details{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 24px;margin-bottom:12px}
+summary{cursor:pointer;font:700 1.08rem var(--font-h);color:var(--ink);list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.5rem;line-height:1;color:var(--blue);transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin-top:12px;color:var(--muted)}
+
+/* CTA final */
+.final{background:linear-gradient(135deg,var(--blue-d),var(--blue) 55%,#5B7DFF);color:#E4EAFF;text-align:center;padding:100px 0}
+.final h2{color:#fff;max-width:18em;margin:0 auto 18px}
+.final p{max-width:34em;margin:0 auto 34px;font-size:1.15rem}
+.final .cta-row{justify-content:center}
+
+footer{background:var(--ink);color:#93A3D1;padding:44px 0;font-size:.93rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+footer img{height:56px;width:auto;border-radius:8px}
+footer a{color:#CBD6F5}
+
+/* WhatsApp flotante */
+.wa-float{position:fixed;right:20px;bottom:20px;z-index:60;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 14px 30px -8px rgba(37,211,102,.75);transition:transform .2s}
+.wa-float:hover{transform:scale(1.07)}
+.wa-float svg{width:32px;height:32px;fill:#fff}
+
+/* Una sola entrada orquestada en el hero */
+@media (prefers-reduced-motion:no-preference){
+  .hero-grid>*{animation:in .8s cubic-bezier(.2,.7,.2,1) both}
+  .hero-grid>*:nth-child(2){animation-delay:.18s}
+  @keyframes in{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+}
+
+@media (max-width:980px){
+  section{padding:72px 0}
+  .hero-grid,.what-grid{grid-template-columns:1fr;gap:44px}
+  .visual{max-width:440px;margin:0 auto}
+  .cols,.why-grid{grid-template-columns:1fr}
+  .sectors-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .nav nav{display:none}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .feats,.sectors-grid,.steps{grid-template-columns:1fr}
+  .chip.c1{left:8px}.chip.c2{right:8px}
+  .btn{width:100%;justify-content:center}
+  .nav .btn{width:auto}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="https://linkfortis.com/" aria-label="Linkfortis, inicio"><img src="https://linkfortis.com/img/logo_linkfortis.jpeg" alt="Linkfortis"></a>
+    <nav aria-label="Principal">
+      <a href="#problema">Por qué una web</a>
+      <a href="#incluye">Qué incluye</a>
+      <a href="#sectores">Sectores</a>
+      <a href="#proceso">Cómo trabajamos</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+    <a class="btn btn-main" href="https://linkfortis.com/contacto/">Pedir presupuesto</a>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Tu negocio merece una web que <em>trabaje por ti</em> las 24 horas.</h1>
+      <p class="lead">Diseñamos páginas web claras, rápidas y elegantes para comercios, restaurantes, peluquerías, clínicas y negocios locales. Para que te encuentren en Google, vean lo que ofreces y te escriban por WhatsApp en un clic.</p>
+      <div class="cta-row">
+        <a class="btn btn-main" href="https://linkfortis.com/contacto/">Quiero mi web
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="https://wa.me/34643380339?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20creaci%C3%B3n%20de%20mi%20p%C3%A1gina%20web" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+      </div>
+      <small>Presupuesto sin compromiso · Trato directo contigo, sin intermediarios</small>
+    </div>
+    <div class="visual">
+      <div class="photo"><img src="https://linkfortis.com/img/mujerweb.jpeg" alt="Propietaria de un negocio local gestionando su página web" onerror="this.style.display='none'"></div>
+      <div class="chip c1"><i>🔎</i><div>Te encuentran en Google<small>Con tu web optimizada</small></div></div>
+      <div class="chip c2"><i>💬</i><div>Te escriben por WhatsApp<small>Un solo toque</small></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <span><b>Hostelería</b></span><span>·</span><span><b>Peluquerías y estética</b></span><span>·</span><span><b>Clínicas dentales</b></span><span>·</span><span><b>Comercios</b></span><span>·</span><span><b>Profesionales y servicios</b></span>
+  </div>
+</div>
+
+<!-- PROBLEMA -->
+<section class="problem" id="problema">
+  <div class="wrap">
+    <div class="head">
+      <h2>Hoy, si no estás en internet, para muchos clientes no existes.</h2>
+      <p>Antes de entrar en un local o llamar a un profesional, la gente lo busca en el móvil. Lo que encuentran decide si te eligen a ti o a la competencia.</p>
+    </div>
+    <div class="cols">
+      <article class="pain">
+        <div class="ic">📱</div>
+        <h3>Te buscan y no te encuentran</h3>
+        <p>Sin una web propia dependes de redes sociales y de directorios donde tu competencia aparece junto a ti.</p>
+      </article>
+      <article class="pain">
+        <div class="ic">🕒</div>
+        <h3>Pierdes clientes fuera de horario</h3>
+        <p>Horarios, carta, servicios, precios y ubicación visibles a cualquier hora, sin tener que contestar la misma pregunta cada día.</p>
+      </article>
+      <article class="pain dark">
+        <div class="ic">✨</div>
+        <h3>Con tu web, todo cambia</h3>
+        <p>Imagen profesional, información clara y un camino directo para que el cliente reserve, llame o te escriba.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ INCLUYE -->
+<section class="what" id="incluye">
+  <div class="wrap what-grid">
+    <div class="what-img"><img src="https://linkfortis.com/img/iconoweb.jpeg" alt="Icono de página web profesional" onerror="this.style.display='none'"></div>
+    <div>
+      <h2>Una web completa, lista para vender desde el primer día.</h2>
+      <p style="margin-top:16px;color:var(--muted);font-size:1.1rem">Sin tecnicismos ni complicaciones: tú me cuentas cómo es tu negocio y yo me encargo del resto.</p>
+      <div class="feats">
+        <div class="feat"><div class="tick">✓</div><div><b>Diseño a medida</b><span>Con tu logo, tus colores y la personalidad de tu negocio.</span></div></div>
+        <div class="feat"><div class="tick">✓</div><div><b>Perfecta en el móvil</b><span>Se ve y funciona bien en cualquier pantalla.</span></div></div>
+        <div class="feat"><div class="tick">✓</div><div><b>Botón de WhatsApp</b><span>Para que reserven o consulten al instante.</span></div></div>
+        <div class="feat"><div class="tick">✓</div><div><b>Visible en Google</b><span>Estructura pensada para posicionarte en tu zona.</span></div></div>
+        <div class="feat"><div class="tick">✓</div><div><b>Mapa, horarios y reseñas</b><span>Todo lo que tu cliente necesita para decidirse.</span></div></div>
+        <div class="feat"><div class="tick">✓</div><div><b>Carga rápida y segura</b><span>Una web ágil que transmite confianza.</span></div></div>
+      </div>
+      <div class="cta-row" style="margin-top:38px">
+        <a class="btn btn-main" href="https://linkfortis.com/contacto/">Solicitar presupuesto</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORES -->
+<section id="sectores">
+  <div class="wrap">
+    <div class="head">
+      <h2>Hecha para negocios como el tuyo.</h2>
+      <p>Cada sector tiene sus propias necesidades. Adapto la web a lo que realmente le importa a tu cliente.</p>
+    </div>
+    <div class="sectors-grid">
+      <article class="sec"><div class="ic">🍽️</div><h3>Hostelería</h3><p>Carta, fotos que abren el apetito, reservas y ubicación a un toque.</p></article>
+      <article class="sec"><div class="ic">💇</div><h3>Peluquerías y estética</h3><p>Servicios, tarifas, galería de trabajos y cita por WhatsApp.</p></article>
+      <article class="sec"><div class="ic">🦷</div><h3>Dentistas y clínicas</h3><p>Tratamientos explicados con claridad y confianza desde el primer vistazo.</p></article>
+      <article class="sec"><div class="ic">🛍️</div><h3>Comercios y tiendas</h3><p>Escaparate digital con tus productos, ofertas y horarios siempre al día.</p></article>
+      <article class="sec"><div class="ic">🔧</div><h3>Talleres y reformas</h3><p>Muestra tus trabajos y facilita que te pidan presupuesto.</p></article>
+      <article class="sec"><div class="ic">🏋️</div><h3>Gimnasios y academias</h3><p>Horarios, clases, tarifas e inscripción sin fricciones.</p></article>
+      <article class="sec"><div class="ic">⚖️</div><h3>Despachos y profesionales</h3><p>Imagen seria y cercana que genera confianza desde el primer contacto.</p></article>
+      <article class="sec"><div class="ic">🌍</div><h3>Y cualquier otro negocio</h3><p>Trabajo en tu zona o a distancia, estés donde estés.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="process" id="proceso">
+  <div class="wrap">
+    <div class="head">
+      <h2>Así de fácil es tener tu web.</h2>
+      <p>Un proceso claro, sin sorpresas y con comunicación directa en cada paso.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Hablamos</h3><p>Me cuentas qué haces, a quién quieres llegar y qué necesitas. Sin compromiso.</p></div>
+      <div class="step"><h3>Diseño tu web</h3><p>Preparo una propuesta visual con tu marca y los contenidos clave.</p></div>
+      <div class="step"><h3>Ajustamos juntos</h3><p>Revisas, me dices qué cambiar y lo afinamos hasta que te encante.</p></div>
+      <div class="step"><h3>Publicamos</h3><p>Tu web sale online y empieza a trabajar para tu negocio.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ -->
+<section>
+  <div class="wrap">
+    <div class="head">
+      <h2>Por qué trabajar conmigo.</h2>
+    </div>
+    <div class="why-grid">
+      <article class="why"><h3>Trato cercano y directo</h3><p>Hablas con quien diseña tu web. Sin comerciales ni intermediarios, con respuestas rápidas.</p></article>
+      <article class="why"><h3>Pensado para vender</h3><p>No es solo una web bonita: cada sección guía al cliente hacia llamarte, reservar o escribirte.</p></article>
+      <article class="why"><h3>Todo resuelto por ti</h3><p>Diseño, textos orientados a captar clientes y puesta en marcha. Tú te centras en tu negocio.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="head"><h2>Preguntas frecuentes</h2></div>
+    <div class="faq-list">
+      <details><summary>¿Cuánto cuesta una página web para mi negocio?</summary><p>Depende de lo que necesites: número de secciones, reservas, galería, etc. Cuéntame tu caso y te preparo un presupuesto cerrado, sin compromiso y sin letra pequeña.</p></details>
+      <details><summary>¿Cuánto tiempo tarda en estar lista?</summary><p>Una web de negocio local suele poder estar online en pocos días o semanas, según el contenido y lo rápido que tengamos los textos y las fotos. Te doy un plazo claro desde el principio.</p></details>
+      <details><summary>No tengo fotos ni textos, ¿puedo contratarlo igual?</summary><p>Sí. Te ayudo a organizar el contenido y a redactar textos pensados para atraer clientes. Si ya tienes fotos y logo, los aprovecho.</p></details>
+      <details><summary>¿Podré cambiar cosas más adelante?</summary><p>Por supuesto. Puedes pedirme actualizaciones de horarios, carta, precios o imágenes cuando lo necesites.</p></details>
+      <details><summary>¿Trabajas solo en mi zona?</summary><p>Atiendo negocios de la zona y también de cualquier lugar: todo el proceso se puede hacer a distancia por WhatsApp, email o videollamada.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+  <div class="wrap">
+    <h2>Empieza hoy a atraer más clientes con tu propia web.</h2>
+    <p>Cuéntame tu negocio y te preparo una propuesta a medida. Sin compromiso.</p>
+    <div class="cta-row">
+      <a class="btn btn-main" href="https://linkfortis.com/contacto/">Ir al formulario de contacto</a>
+      <a class="btn btn-wa" href="https://wa.me/34643380339?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20creaci%C3%B3n%20de%20mi%20p%C3%A1gina%20web" target="_blank" rel="noopener">
+        <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9.4 3 4 8.3 4 14.9c0 2.3.7 4.5 1.9 6.4L4 29l7.9-1.9c1.8 1 3.9 1.500 6.100 1.500 6.600 0 12-5.300 12-11.900S22.600 3 16 3zm0 21.800c-1.900 0-3.800-.5-5.400-1.500l-.4-.2-4.100 1 1.100-4-.3-.4c-1.100-1.700-1.600-3.600-1.600-5.600C5.300 9 10.100 4.300 16 4.300S26.700 9 26.700 14.800 21.900 24.800 16 24.800zm5.900-7.500c-.3-.2-1.900-.9-2.200-1-.3-.1-.5-.2-.7.200-.2.300-.8 1-.9 1.200-.2.200-.3.200-.6.100-.3-.2-1.400-.5-2.600-1.600-1-.9-1.600-1.900-1.800-2.200-.2-.3 0-.5.100-.7l.5-.5c.1-.2.200-.3.300-.5.100-.2 0-.4 0-.5-.1-.2-.7-1.700-1-2.300-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.100-.8.400-.3.300-1.100 1.100-1.100 2.600s1.100 3 1.300 3.200c.2.200 2.200 3.400 5.400 4.700 3.200 1.300 3.200.9 3.800.8.600-.1 1.900-.8 2.200-1.500.3-.7.300-1.400.2-1.500-.1-.2-.3-.2-.6-.4z"/></svg>
+        Escribir por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="https://linkfortis.com/img/logo_linkfortis.jpeg" alt="Linkfortis">
+    <span>Soluciones tecnológicas para negocios · <a href="https://linkfortis.com/contacto/">Contacto</a> · <a href="https://wa.me/34643380339" target="_blank" rel="noopener">643 38 03 39</a> · <a href="mailto:hola@linkfortis.com">hola@linkfortis.com</a></span>
+    <span>© <script>document.write(new Date().getFullYear())</script> Linkfortis</span>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/34643380339?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20creaci%C3%B3n%20de%20mi%20p%C3%A1gina%20web" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.3 4 14.9c0 2.3.7 4.5 1.9 6.4L4 29l7.9-1.9c1.8 1 3.9 1.5 6.1 1.5 6.6 0 12-5.3 12-11.9S22.6 3 16 3zm5.9 14.3c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.400-.5-2.600-1.600-1-.9-1.600-1.900-1.800-2.200-.2-.3 0-.5.1-.7l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.7-1.700-1-2.300-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.100 1.100-1.100 2.600s1.100 3 1.300 3.200c.2.200 2.200 3.400 5.400 4.700 3.200 1.300 3.200.9 3.800.8.600-.1 1.900-.8 2.200-1.500.3-.7.3-1.400.2-1.500-.1-.2-.3-.2-.6-.4z"/></svg>
+</a>
+
+</body>
+</html>
