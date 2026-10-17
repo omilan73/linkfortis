@@ -83,7 +83,7 @@
   .nav-toggle span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;}
 
   /* -------- hero -------- */
-  .hero{padding:64px 0 0 0;}
+  .hero{padding:64px 0;}
   .hero-grid{
     display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;
   }
@@ -105,31 +105,11 @@
     font-size:0.96rem;font-weight:500;text-decoration:none;
   }
   .btn-secondary:hover{border-color:var(--ink);}
-  .hero-meta{
-    display:flex;gap:28px;margin-top:36px;padding-top:24px;border-top:1px solid var(--line);
-  }
-  .hero-meta div{font-size:0.85rem;color:var(--muted);}
-  .hero-meta strong{display:block;color:var(--ink);font-family:'Space Grotesk';font-size:1.3rem;font-weight:600;}
   .hero-visual{position:relative;}
-  
-  .hero-video-container {
-    max-width: 380px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .hero-visual video, .hero-visual img{
+  .hero-visual img{
     border-radius:var(--radius-s);
     box-shadow:0 24px 48px -20px rgba(18,43,51,0.35);
   }
-  .hero-visual .tag{
-    position:absolute;bottom:-18px;left:calc(50% - 190px - 18px);
-    background:var(--ink);color:#fff;
-    padding:14px 20px;border-radius:var(--radius-s);
-    font-family:'Space Grotesk';font-size:0.95rem;font-weight:500;
-    box-shadow:0 12px 24px -8px rgba(18,43,51,0.4);
-  }
-  .hero-visual .tag span{display:block;font-size:0.72rem;color:var(--sage-soft);font-weight:400;font-family:'IBM Plex Sans';margin-top:2px;}
 
   /* -------- nfc explainer strip -------- */
   .strip{
@@ -150,19 +130,32 @@
 
   /* -------- how it works -------- */
   .steps{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
     border-top:1px solid var(--line);
+    padding-top:32px;
   }
   .step{
-    padding:32px 28px 32px 0;border-right:1px solid var(--line);
+    padding:28px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-s);
+    display:flex;flex-direction:column;
   }
-  .step:last-child{border-right:none;}
   .step .num{
     font-family:'Space Grotesk';font-size:0.85rem;color:var(--teal);
     font-weight:600;margin-bottom:14px;display:block;
   }
   .step h3{font-size:1.15rem;margin-bottom:10px;}
-  .step p{font-size:0.95rem;margin:0;}
+  .step p{font-size:0.95rem;margin:0 0 16px 0;}
+  .step-media{
+    margin-top:auto;
+    border-radius:var(--radius-s);
+    overflow:hidden;
+    background:var(--paper);
+    border:1px solid var(--line);
+  }
+  .step-media img, .step-media video{
+    width:100%;
+    height:auto;
+    display:block;
+  }
 
   /* -------- products -------- */
   .products{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
@@ -263,12 +256,8 @@
     .hero{padding-top:44px;}
     .hero h1{font-size:2.1rem;max-width:none;}
     .hero-visual{order:-1;}
-    .hero-visual .tag{left:12px;bottom:-16px;}
-    .hero-meta{flex-wrap:wrap;row-gap:18px;}
     .section{padding:56px 0;}
     .steps{grid-template-columns:1fr;}
-    .step{border-right:none;border-bottom:1px solid var(--line);padding:26px 0;}
-    .step:last-child{border-bottom:none;}
     .products{grid-template-columns:1fr;}
     .compare-grid{grid-template-columns:1fr;}
     .order-grid{grid-template-columns:1fr;gap:40px;}
@@ -481,7 +470,7 @@
     .reviews{padding:56px 0 64px;}
     .rv-card,.rv-skeleton{flex:0 0 min(86%,340px);}
     .rv-nav .rv-all{display:none;}
-    .rv-badge.show{display:none;}  /* en movil tapa contenido: se oculta */
+    .rv-badge.show{display:none;}
   }
 
   /* ================================================================
@@ -580,16 +569,17 @@
 
   /* --- Botón llamativo en el Hero --- */
   .hero-new{
-    display:inline-flex;align-items:center;gap:10px;margin-bottom:22px;
+    display:inline-flex;align-items:center;gap:12px;
     background:var(--teal-deep);color:#fff;border-radius:999px;
-    padding:6px 16px 6px 6px;font-size:0.88rem;text-decoration:none;
+    padding:8px 20px 8px 8px;font-size:0.95rem;text-decoration:none;
     box-shadow:0 8px 20px -6px rgba(18,43,51,0.3);
     transition:transform 0.2s ease, box-shadow 0.2s ease;
+    border:1px solid rgba(255,255,255,0.15);
   }
   .hero-new b{
     background:var(--sage);color:var(--ink);font-family:'Space Grotesk';font-weight:600;
-    font-size:0.7rem;letter-spacing:0.05em;text-transform:uppercase;
-    padding:4px 10px;border-radius:999px;
+    font-size:0.75rem;letter-spacing:0.05em;text-transform:uppercase;
+    padding:5px 12px;border-radius:999px;
   }
   .hero-new:hover{transform:translateY(-2px);box-shadow:0 12px 24px -6px rgba(18,43,51,0.4);color:#fff;}
 
@@ -613,10 +603,10 @@
 
 <header>
   <div class="wrap nav">
-    <div class="nav-left">
+    <a href="https://linkfortis.com" class="nav-left" style="text-decoration: none;">
       <img src="/img/logo_linkfortis.jpeg" alt="Linkfortis">
       <span class="brand-word">Linkfortis</span>
-    </div>
+    </a>
     <button class="nav-toggle" aria-label="Abrir menú" onclick="document.querySelector('.nav-links').classList.toggle('open')">
       <span></span><span></span><span></span>
     </button>
@@ -637,28 +627,19 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <!-- Botón superior modernizado y mucho más llamativo -->
-      <a class="hero-new" href="#reviewshield"><b>Nuevo</b>ReviewShield: el escudo de tu nota en Google →</a>
+      <!-- Botón superior modernizado, más arriba y con líneas superior e inferior -->
+      <div style="border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 12px 0; margin-top: 0; margin-bottom: 20px;">
+        <a class="hero-new" href="#reviewshield" style="margin-bottom: 0;"><b>Nuevo</b>ReviewShield: el escudo de tu nota en Google →</a>
+      </div>
       <h1>Que cada mostrador consiga tu próxima reseña de Google</h1>
-      <p class="lede">Tarjetas con tecnología NFC para tu negocio: el cliente acerca el móvil y se abre directamente tu ficha de Google o un WhatsApp ya redactado. Sin cámara, sin códigos QR, sin instalar nada.</p>
+      <p class="lede">Tarjetas con tecnología NFC para tu negocio: el cliente acerca el móvil y se abre directamente la ficha de Google, sin cámara, sin códigos QR, sin instalar nada.</p>
       <div class="hero-actions">
         <a class="btn-primary" href="https://wa.me/34643380339?text=Hola%2C%20quiero%20pedir%20una%20tarjeta%20NFC%20de%20Linkfortis" target="_blank" rel="noopener">Pedir mi tarjeta — 19€</a>
         <a class="btn-secondary" href="#como-funciona">Ver cómo funciona</a>
       </div>
-      <div class="hero-meta">
-        <div><strong>19€</strong>pago único, sin cuotas</div>
-        <div><strong>&lt;1s</strong>en activarse al acercar el móvil</div>
-        <div><strong>NFC</strong>sin cámara ni códigos QR</div>
-      </div>
     </div>
     <div class="hero-visual">
-      <div class="hero-video-container">
-        <video autoplay muted loop playsinline style="width: 100%; height: auto; border-radius: var(--radius-s); box-shadow: 0 24px 48px -20px rgba(18,43,51,0.35); display: block;">
-          <source src="/videos/nfc_demo.mp4" type="video/mp4">
-          Tu navegador no soporta la reproducción de vídeo.
-        </video>
-        <div class="tag">Acerca el móvil<span>y listo — sin apps</span></div>
-      </div>
+      <img src="/img/tj_review_near.jpeg" alt="Tarjeta NFC Linkfortis" style="width: 100%; height: auto;">
     </div>
   </div>
 </section>
@@ -678,29 +659,87 @@
   <div class="wrap">
     <div class="head-row">
       <h2>Tres pasos, sin fricción</h2>
-      <p>Desde que el cliente acerca el móvil hasta que deja la reseña o abre el chat, pasa menos de un segundo.</p>
+      <p>Desde que el cliente acerca el móvil hasta que deja la reseña pasa menos de diez segundos.</p>
     </div>
     <div class="steps">
       <div class="step">
         <span class="num">01</span>
         <h3>Coloca la tarjeta</h3>
         <p>En el mostrador, la mesa o la recepción — en el punto donde te despides del cliente.</p>
+        <div class="step-media">
+          <img src="/img/tj_review_near.jpeg" alt="Tarjeta NFC de Linkfortis" loading="lazy">
+        </div>
       </div>
       <div class="step">
         <span class="num">02</span>
         <h3>El cliente acerca el móvil</h3>
         <p>Cualquier smartphone actual, iOS o Android, detecta la tarjeta sin necesidad de abrir ninguna app.</p>
+        <div class="step-media" style="max-width: 220px; margin: 0 auto;">
+          <video autoplay muted loop playsinline style="width: 100%; height: auto; display: block;">
+            <source src="/videos/nfc_demo.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de vídeo.
+          </video>
+        </div>
       </div>
       <div class="step">
         <span class="num">03</span>
         <h3>Se abre automáticamente</h3>
-        <p>Tu ficha de Google lista para recibir la reseña, o un WhatsApp ya redactado con tu número.</p>
+        <p>Tu ficha de Google lista para recibir la reseña.</p>
+        <div class="step-media">
+          <img src="/img/img_resenaG.png" alt="Ficha de Google lista para recibir reseña" loading="lazy">
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section-tight" id="producto" style="padding-top:0;">
+<!-- SECCIÓN "Para qué tipo de negocio" reubicada justo debajo de los 3 pasos -->
+<section class="section" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="head-row">
+      <h2>Para qué tipo de negocio</h2>
+      <p>Cualquier negocio con atención cara a cara y un punto claro de despedida del cliente.</p>
+    </div>
+    <div class="who-row">
+      <span>Peluquerías y salones de belleza</span>
+      <span>Restaurantes y cafeterías</span>
+      <span>Clínicas y consultas</span>
+      <span>Tiendas y comercios</span>
+      <span>Talleres y servicios técnicos</span>
+      <span>Profesionales y autónomos</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN "Por qué NFC y no un código QR" -->
+<section class="compare" id="por-que-nfc">
+  <div class="wrap section">
+    <h2>Por qué NFC y no un código QR</h2>
+    <p>Nuestras tarjetas funcionan solo con NFC — de forma intencionada. Es una experiencia más directa para el cliente y más cuidada para tu marca.</p>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <h3>Con NFC</h3>
+        <ul>
+          <li>Basta con acercar el móvil, sin apuntar ni enfocar</li>
+          <li>No depende de que la cámara enfoque bien o haya buena luz</li>
+          <li>Funciona incluso a través de una funda fina</li>
+          <li>El diseño de la tarjeta queda limpio, sin un cuadrado de píxeles</li>
+        </ul>
+      </div>
+      <div class="compare-col no">
+        <h3>Con QR</h3>
+        <ul>
+          <li>Hay que abrir la cámara y encuadrar el código</li>
+          <li>Reflejos, poca luz o distancia pueden dificultar la lectura</li>
+          <li>El patrón del código ocupa espacio visual en el diseño</li>
+          <li>Puede fotografiarse y reutilizarse fuera de tu mostrador</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight" id="producto" style="padding-top:0; margin-top:88px;">
   <div class="wrap">
     <div class="head-row">
       <h2>Dos tarjetas, un mismo toque</h2>
@@ -863,50 +902,6 @@
       <div>
         <a class="btn-primary" href="https://linkfortis.com/web" target="_blank" rel="noopener">Ver servicio web →</a>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="compare" id="por-que-nfc">
-  <div class="wrap section">
-    <h2>Por qué NFC y no un código QR</h2>
-    <p>Nuestras tarjetas funcionan solo con NFC — de forma intencionada. Es una experiencia más directa para el cliente y más cuidada para tu marca.</p>
-    <div class="compare-grid">
-      <div class="compare-col">
-        <h3>Con NFC</h3>
-        <ul>
-          <li>Basta con acercar el móvil, sin apuntar ni enfocar</li>
-          <li>No depende de que la cámara enfoque bien o haya buena luz</li>
-          <li>Funciona incluso a través de una funda fina</li>
-          <li>El diseño de la tarjeta queda limpio, sin un cuadrado de píxeles</li>
-        </ul>
-      </div>
-      <div class="compare-col no">
-        <h3>Con QR</h3>
-        <ul>
-          <li>Hay que abrir la cámara y encuadrar el código</li>
-          <li>Reflejos, poca luz o distancia pueden dificultar la lectura</li>
-          <li>El patrón del código ocupa espacio visual en el diseño</li>
-          <li>Puede fotografiarse y reutilizarse fuera de tu mostrador</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
-    <div class="head-row">
-      <h2>Para qué tipo de negocio</h2>
-      <p>Cualquier negocio con atención cara a cara y un punto claro de despedida del cliente.</p>
-    </div>
-    <div class="who-row">
-      <span>Peluquerías y salones de belleza</span>
-      <span>Restaurantes y cafeterías</span>
-      <span>Clínicas y consultas</span>
-      <span>Tiendas y comercios</span>
-      <span>Talleres y servicios técnicos</span>
-      <span>Profesionales y autónomos</span>
     </div>
   </div>
 </section>
